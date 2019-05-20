@@ -40,11 +40,11 @@ namespace Stock.Api
             services.AddDbContext<ProductContext>(options =>
                 options
                 .UseLazyLoadingProxies()
-                .UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+                .UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<ProductTypeContext>(options =>
                 options
                 .UseLazyLoadingProxies()
-                .UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+                .UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddAutoMapper();
 

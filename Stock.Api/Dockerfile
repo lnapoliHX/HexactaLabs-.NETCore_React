@@ -10,7 +10,7 @@ COPY ["Stock.Repository/Stock.Repository.csproj", "Stock.Repository/"]
 COPY ["Stock.AppService/Stock.AppService.csproj", "Stock.AppService/"]
 RUN dotnet restore "Stock.Api/Stock.Api.csproj"
 COPY . .
-WORKDIR "/src/Stock.Api"
+WORKDIR /src/Stock.Api
 RUN dotnet build "Stock.Api.csproj" -c Release -o /app
 
 FROM build AS publish
