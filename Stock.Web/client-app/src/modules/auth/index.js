@@ -40,18 +40,27 @@ export default function reducer(state = initialState, action = {}) {
 export const login = ({ username, password }) => (dispatch) => {
     dispatch({ type: AUTH_REQUEST })
 
-    const url = '/authenticate';
 
-    api.post(url, { username: username, password: password })
-        .then((response, ...other) => {
-            localStorage.setItem('JWT_LOGIN', response.data)
-            dispatch(go('/'))
-            dispatch({ type: AUTH_RESPONSE, payload: response.data })
-        })
-        .catch(() => {
-            //toast.error('Ocurrió un error');
-            dispatch({ type: AUTH_ERROR, error: 'Las credenciales no son correctas, intente nuevamente.' })
-        });
+    if (username == password && username == 'admin') {
+        localStorage.setItem('JWT_LOGIN', "ESTO ES UN JWT DE PRUEBA")
+        dispatch(go('/'))
+        dispatch({ type: AUTH_RESPONSE })
+    } else {
+        dispatch({ type: AUTH_ERROR, error: 'Las credenciales no son correctas, intente nuevamente.(admin,admin)' })
+    }
+
+    // const url = '/authenticate';
+
+    // api.post(url, { username: username, password: password })
+    //     .then((response, ...other) => {
+    //         localStorage.setItem('JWT_LOGIN', response.data)
+    //         dispatch(go('/'))
+    //         dispatch({ type: AUTH_RESPONSE, payload: response.data })
+    //     })
+    //     .catch(() => {
+    //         //toast.error('Ocurrió un error');
+    //         dispatch({ type: AUTH_ERROR, error: 'Las credenciales no son correctas, intente nuevamente.' })
+    //     });
 }
 
 export const signup = ({ username, password }) => (dispatch) => {
@@ -61,7 +70,7 @@ export const signup = ({ username, password }) => (dispatch) => {
 
     api.post(url, { username: username, password: password })
         .then((response) => {
-           login({username, password})(dispatch)
+            login({ username, password })(dispatch)
         })
         .catch(() => {
             //toast.error('Ocurrió un error');

@@ -1,27 +1,27 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { loaded } from '../index'
+import { load } from '../index'
 import Home from '../presentation/Home'
+import Spinner from '../../../components/loading/spinner'
 
 class HomePage extends React.Component {
 
     componentDidMount() {
-        this.props.loaded();
+        //TODO: could use "useEffect"
+        this.props.load();
     }
 
     render() {
-        const { loaded } = this.props;
 
         return (
-            <div class="col-12">
-               <div>
-                    <h5>Header</h5>
-               </div>
-               <div>
-                   <Home />
-               </div>
-            </div>
+            <Spinner loading={this.props.loading}>
+                <div class="col-12">
+                    <div>
+                        <Home />
+                    </div>
+                </div>
+            </Spinner>
         )
     }
 }
@@ -33,6 +33,6 @@ const mapStateToProps = ({ home }) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    ...bindActionCreators({ loaded }, dispatch),
+    ...bindActionCreators({ load }, dispatch),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

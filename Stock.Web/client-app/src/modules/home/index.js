@@ -16,6 +16,6 @@ export default function reducer(state = initialState, action = {}) {
 }
 
 // actions creators
-export const loaded = () => dispatch => {
-    dispatch({ type: HOME_LOADED, payload: null })
+export const load = () => dispatch => {
+    setTimeout(() => dispatch({ type: HOME_LOADED, payload: null }), 1500)
 }

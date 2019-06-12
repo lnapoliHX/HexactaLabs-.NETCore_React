@@ -16,8 +16,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import 'bootstrap/dist/js/bootstrap'
 // import './vendor/sb-admin-2.css'
-// import 'react-table/react-table.css'
-// import 'react-widgets/dist/css/react-widgets.css';
+import 'react-table/react-table.css'
+import 'react-widgets/dist/css/react-widgets.css';
 
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -37,7 +37,7 @@ const store = configureStore(history, initialState);
 const menu_factory = (title, to, icon, children = []) => ({ title, to, icon, children })
 
 const menu = [
-  menu_factory("Productos", "/product", "now-ui-icons design_app")
+  menu_factory("Proovedor", "/provider", "algun-icon")
 ];
 
 ReactDOM.render(
