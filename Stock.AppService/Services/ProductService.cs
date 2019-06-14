@@ -41,7 +41,7 @@ namespace Stock.AppService.Services
             var electroTypeId = this.domainSettings.Value.ElectroTypeId;
             var producto = this.Repository.Get(idProducto);
             var margenGanancia = producto.SalePrice - producto.CostPrice;
-            if (producto.ProductType.Id != electroTypeId)
+            if (producto.ProductType.Id != electroTypeId.ToString())
             {
                 var exceso = margenGanancia - (producto.CostPrice * 0.1M);
                 if (exceso > 0)
