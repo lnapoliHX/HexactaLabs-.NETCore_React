@@ -2,20 +2,16 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using MySql.Data.MySqlClient;
 using Stock.Api.Exceptions;
 using Stock.AppService.Services;
 using Stock.Model.Entities;
-using Stock.Repository.Contexts;
 using Stock.Repository.LiteDb;
 using Stock.Repository.LiteDb.Configuration;
 using Stock.Repository.LiteDb.Interface;
 using Stock.Repository.LiteDb.Repository;
-using Stock.Repository.Repositories;
 using Stock.Settings;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
@@ -41,17 +37,6 @@ namespace Stock.Api
             services.AddTransient<ProductService>();
             services.AddTransient<ProductTypeService>();
             services.AddTransient<Repository.LiteDb.Configuration.ConfigurationProvider>();
-            // services.AddTransient<ProductRepository>();
-            // services.AddTransient<ProductTypeRepository>();
-            // services.AddDbContext<ProductContext>(options =>
-            //     options
-            //     .UseLazyLoadingProxies()
-            //     .UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-            // services.AddDbContext<ProductTypeContext>(options =>
-            //     options
-            //     .UseLazyLoadingProxies()
-            //     .UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-
             services.AddTransient<ILiteConfiguration, LiteConfiguration>();
             services.AddTransient<IDbContext, DataContext>();
             services.AddTransient<IRepository<Product>, BaseRepository<Product>>();

@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stock.Api", "Stock.Api\Stock.Api.csproj", "{490676AD-1294-43E4-A541-817D8941283E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stock.Repository", "Stock.Repository\Stock.Repository.csproj", "{760C0AC6-EC0C-48CC-ADCE-BB5236E210D0}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stock.Model", "Stock.Model\Stock.Model.csproj", "{C6B88B73-BAD0-4792-A2E3-CA4B1C492739}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stock.AppService", "Stock.AppService\Stock.AppService.csproj", "{EEB274CD-B59E-420C-BF54-1F27B286AE5F}"

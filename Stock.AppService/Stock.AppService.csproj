@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Stock.Model\Stock.Model.csproj" />
-    <ProjectReference Include="..\Stock.Repository\Stock.Repository.csproj" />
     <ProjectReference Include="..\Stock.Repository.LiteDb\Stock.Repository.LiteDb.csproj" />
   </ItemGroup>
 

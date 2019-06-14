@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Stock.Model.Exceptions;
-using Stock.Repository.Exceptions;
+using Stock.Repository.LiteDb.Exceptions;
 using System;
 using System.Net;
 using System.Threading.Tasks;
