@@ -3,7 +3,7 @@ using Stock.Repository.LiteDb.Interface;
 
 namespace Stock.Repository.LiteDb.Configuration
 {
-    public class LiteConfiguration : IConfigurationProvider
+    public class LiteConfiguration : ILiteConfiguration
     {
         public LiteDatabase GetDatabase(ConfigurationProvider provider)
         {

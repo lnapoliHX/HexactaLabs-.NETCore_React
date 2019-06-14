@@ -27,6 +27,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="2.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +35,7 @@
     <ProjectReference Include="..\Stock.Model\Stock.Model.csproj" />
     <ProjectReference Include="..\Stock.Repository\Stock.Repository.csproj" />
     <ProjectReference Include="..\Stock.Repository.LiteDb\Stock.Repository.LiteDb.csproj" />
+ 
   </ItemGroup>
 
   <PropertyGroup>

@@ -11,7 +11,7 @@ namespace Stock.Repository.LiteDb
 
         public DataContext(ILiteConfiguration configuration, ConfigurationProvider provider)
         {
-             this.configuration = configuration;
+            this.configuration = configuration;
             this.provider = provider;
         }
 

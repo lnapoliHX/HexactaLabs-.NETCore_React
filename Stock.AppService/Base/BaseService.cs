@@ -1,7 +1,6 @@
-﻿using Stock.Model.Base;
-using Stock.Repository.Base;
-using Stock.Repository.Exceptions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Stock.Model.Base;
+using Stock.Repository.LiteDb.Interface;
 
 namespace Stock.AppService.Base
 {
@@ -22,12 +21,12 @@ namespace Stock.AppService.Base
 
         public IEnumerable<TEntity> GetAll()
         {
-            return this.Repository.GetAll();
+            return this.Repository.List();
         }
 
-        public TEntity Get(int id)
+        public TEntity Get(string id)
         {
-            return this.Repository.Get(id);            
+            return this.Repository.GetById(id);            
         }
 
         public void Delete(TEntity entity)
@@ -37,7 +36,8 @@ namespace Stock.AppService.Base
 
         public TEntity Update(TEntity entity)
         {
-            return this.Repository.Update(entity);
+            this.Repository.Update(entity);
+            return entity;
         }
     }
 }

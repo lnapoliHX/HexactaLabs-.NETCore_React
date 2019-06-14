@@ -9,7 +9,12 @@ using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
 using Stock.Api.Exceptions;
 using Stock.AppService.Services;
+using Stock.Model.Entities;
 using Stock.Repository.Contexts;
+using Stock.Repository.LiteDb;
+using Stock.Repository.LiteDb.Configuration;
+using Stock.Repository.LiteDb.Interface;
+using Stock.Repository.LiteDb.Repository;
 using Stock.Repository.Repositories;
 using Stock.Settings;
 using Swashbuckle.AspNetCore.Swagger;
@@ -35,16 +40,22 @@ namespace Stock.Api
             services.Configure<DomainSettings>(Configuration.GetSection("DomainSettings"));
             services.AddTransient<ProductService>();
             services.AddTransient<ProductTypeService>();
-            services.AddTransient<ProductRepository>();
-            services.AddTransient<ProductTypeRepository>();
-            services.AddDbContext<ProductContext>(options =>
-                options
-                .UseLazyLoadingProxies()
-                .UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<ProductTypeContext>(options =>
-                options
-                .UseLazyLoadingProxies()
-                .UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient<Repository.LiteDb.Configuration.ConfigurationProvider>();
+            // services.AddTransient<ProductRepository>();
+            // services.AddTransient<ProductTypeRepository>();
+            // services.AddDbContext<ProductContext>(options =>
+            //     options
+            //     .UseLazyLoadingProxies()
+            //     .UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            // services.AddDbContext<ProductTypeContext>(options =>
+            //     options
+            //     .UseLazyLoadingProxies()
+            //     .UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddTransient<ILiteConfiguration, LiteConfiguration>();
+            services.AddTransient<IDbContext, DataContext>();
+            services.AddTransient<IRepository<Product>, BaseRepository<Product>>();
+            services.AddTransient<IRepository<ProductType>, BaseRepository<ProductType>>();
 
             services.AddAutoMapper();
 
@@ -62,7 +73,7 @@ namespace Stock.Api
 
         private void OnShutdown()
         {
-            MySqlConnection.ClearAllPools();
+           // MySqlConnection.ClearAllPools();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -95,7 +106,7 @@ namespace Stock.Api
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Stock API V1");
-                c.RoutePrefix = "docs";
+               // c.RoutePrefix = "docs";
             });
 
             applicationLifetime.ApplicationStopping.Register(OnShutdown);                        

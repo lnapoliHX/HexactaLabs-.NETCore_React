@@ -21,7 +21,8 @@ namespace Stock.Repository.LiteDb.Repository
         }
 
         public T Add(T entity)
-        {
+        {   
+            entity.Id = Guid.NewGuid().ToString();
             this.collection.Insert(entity);
             return entity;
         }

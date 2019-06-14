@@ -38,7 +38,7 @@ namespace Stock.Api.Controllers
         /// <param name="id">Identificador de la instancia a recuperar</param>
         /// <returns>Una instancia</returns>
         [HttpGet("{id}")]
-        public ActionResult<ProductTypeDTO> Get(int id)
+        public ActionResult<ProductTypeDTO> Get(string id)
         {
             return this.mapper.Map<ProductTypeDTO>(this.service.Get(id));
         }
@@ -60,7 +60,7 @@ namespace Stock.Api.Controllers
         /// <param name="id">Identificador de la instancia a editar</param>
         /// <param name="value">Una instancia con los nuevos datos</param>
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] ProductTypeDTO value)
+        public void Put(string id, [FromBody] ProductTypeDTO value)
         {
             var productType = this.service.Get(id);
             TryValidateModel(value);
@@ -73,7 +73,7 @@ namespace Stock.Api.Controllers
         /// </summary>
         /// <param name="id">Identificador de la instancia a borrar</param>
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(string id)
         {
             var productType = this.service.Get(id);
             this.service.Delete(productType);
