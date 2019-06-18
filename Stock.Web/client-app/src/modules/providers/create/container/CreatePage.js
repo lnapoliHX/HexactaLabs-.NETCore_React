@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { reduxForm, formValueSelector } from 'redux-form'
 
 import { load, create, goBack } from '../index';
-import Spinner from '../../../../components/loading/spinner'
+import Spinner from '../../../../components/loading/Spinner'
 import validator  from '../../../../common/helpers/YupValidator'
 
 

@@ -1,12 +1,9 @@
 import React from 'react'
+import { Col } from 'reactstrap'
 
-export default class BodyContainer extends React.Component {
-
-    render() {
-        return (
-            <div className="col">
-                {this.props.children}
-            </div>
-        )
-    }
-}
+export default props =>  (
+    <Col>
+        {props.children}
+    </Col>
+)
+    

@@ -10,7 +10,7 @@ import { getProviders, onPageSizeChange, removeElementAt, goToCreate } from '../
 import { Switch, Route } from 'react-router-dom'
 import Presentation from '../presentation/Presentation'
 
-import Spinner from '../../../../components/loading/spinner'
+import Spinner from '../../../../components/loading/Spinner'
 import CreatePage from '../../create/container/CreatePage';
 
 const df = () => (<div></div>)

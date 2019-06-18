@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { goBack } from 'connected-react-router';
-import Spinner from '../../../components/loading/spinner';
+import Spinner from '../../../components/loading/Spinner';
 
 import { logout } from '../index';
 import Logout from '../presentational/Logout'

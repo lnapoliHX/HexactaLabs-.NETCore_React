@@ -1,24 +1,26 @@
 import React from 'react';
-import { Col, Container, Row } from 'reactstrap';
+import { connect } from 'react-redux';
+import { Container, Row } from 'reactstrap';
+
 import Sidebar from './page/Sidebar';
 import NavMenu from './page/NavMenu';
-import Footer from './page/Footer';
+// import Footer from './page/Footer';
 import BodyContainer from './page/BodyContainer';
-import { connect } from 'react-redux';
 
 const Layout = props => (
     <React.Fragment>
         <NavMenu />
-        <div className="container-fluid">
-            <div className="row">
-                <Sidebar menu={props.menu} {...props} />
+        <Container fluid>
+            <Row>
+                <Sidebar {...props} />
                 <BodyContainer {...props} />
-            </div>
-        </div>
+            </Row>
+        </Container>
     </React.Fragment>
 );
+
 const mapStateToProps = state => ({
     router: state.router
 })
 
-export default connect(mapStateToProps)(Layout)
+export default connect(mapStateToProps)(Layout);

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import ElementRemove from '../presentation/ElementRemove'
 import { load, remove, goBack } from '../index';
-import Spinner from '../../../../components/loading/spinner'
+import Spinner from '../../../../components/loading/Spinner'
 
 class ElementRemovePage extends React.Component {
 

@@ -1,17 +1,19 @@
 import React from 'react';
 import { Label, Input, FormFeedback } from 'reactstrap';
-import { DatePicker, DateTimePicker } from 'react-widgets'
+import { DateTimePicker } from 'react-widgets'
 import Moment from 'moment'
 import momentLocalizer from 'react-widgets-moment';
 
 Moment.locale('es')
 momentLocalizer()
 
-const RenderFieldUpdate = (props) => {
-    const { showTime, input,
+const RenderFieldUpdate = props => {
+    const { 
+        showTime,
         input: { name, value, onChange },
-        label, placeholder, type,
-        meta: { error, touched, pristine } } = props;
+        label,
+        meta: { error, touched } 
+    } = props;
 
     let className = ""
     if (touched && !error) {
@@ -25,17 +27,17 @@ const RenderFieldUpdate = (props) => {
             <div className={className}>
                 <DateTimePicker
                     // {...input}
-
                     onChange={onChange}
                     format="DD MM YYYY"
                     time={showTime}
-                    value={!value ? null : new Date(value)}
+                    value={!!value ? new Date(value) : null }
                 />
             </div>
-            {touched
-                && ((error
-                    && <small className="text-danger">{error}</small>
-                ))}
+            {
+                (touched && error) 
+                    ? <small className="text-danger">{error}</small> 
+                    : null
+            }
         </div>
     )
 }

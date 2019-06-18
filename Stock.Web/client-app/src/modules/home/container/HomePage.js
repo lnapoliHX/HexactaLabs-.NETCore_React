@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { load } from '../index'
 import Home from '../presentation/Home'
-import Spinner from '../../../components/loading/spinner'
+import Spinner from '../../../components/loading/Spinner'
 
 class HomePage extends React.Component {
 
