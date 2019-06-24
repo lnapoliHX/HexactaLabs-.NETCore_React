@@ -1,36 +1,30 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { goBack } from 'connected-react-router';
-import Spinner from '../../../components/loading/Spinner';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { logout } from '../index';
-import Logout from '../presentational/Logout'
+import { connect } from "react-redux";
+import { goBack } from "connected-react-router";
 
-class LogoutPage extends React.Component {
+import { logout } from "../index";
+import Logout from "../presentational/Logout";
 
-    componentDidMount() {
+const LogoutPage = ({ logout, goBack }) => (
+  <Logout confirm={logout} cancel={goBack} />
+);
 
-    }
-
-    render() {
-        const { logout, goBack } = this.props;
-        return (
-            <Logout
-                confirm={() => logout()}
-                cancel={() => goBack()} />
-        )
-    }
-}
-
-const mapStateToProps = (state) => {
-    return ({
-        loading: state.auth.loading,
-    });
+LogoutPage.propTypes = {
+  logout: PropTypes.func.isRequired,
+  goBack: PropTypes.func.isRequired
 };
 
-const mapDispatchToProps = (dispatch) => ({
-    ...bindActionCreators({ logout, goBack }, dispatch),
-});
+const mapStateToProps = state => {
+  return {
+    loading: state.auth.loading
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(LogoutPage);
+const mapDispatchToProps = { logout, goBack };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LogoutPage);
