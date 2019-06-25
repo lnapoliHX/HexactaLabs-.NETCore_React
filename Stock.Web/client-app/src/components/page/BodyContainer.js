@@ -1,12 +1,11 @@
-import React from 'react'
+import React from "react";
+import PropTypes from "prop-types";
+import { Col } from "reactstrap";
 
-export default class BodyContainer extends React.Component {
+const BodyContainer = ({ children }) => <Col>{children}</Col>;
 
-    render() {
-        return (
-            <div className="col">
-                {this.props.children}
-            </div>
-        )
-    }
-}
+BodyContainer.propTypes = {
+  children: PropTypes.element
+};
+
+export default BodyContainer;

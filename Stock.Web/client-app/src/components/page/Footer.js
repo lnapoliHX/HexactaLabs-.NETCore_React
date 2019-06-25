@@ -1,13 +1,5 @@
-import React from 'react'
+import React from "react";
 
-export default class Footer extends React.Component {
+const Footer = () => <footer className="footer" />;
 
-    render() {
-
-        return (<React.Fragment>
-            <footer class="footer">
-                
-            </footer>
-        </React.Fragment>)
-    }
-}
+export default Footer;
