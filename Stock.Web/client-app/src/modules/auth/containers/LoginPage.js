@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import Spinner from "../../../components/loading/Spinner";
+import Spinner from "../../../components/loading/spinner";
 import LoginForm from "../presentational/Login";
 import { login, signup } from "../index";
 
