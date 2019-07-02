@@ -53,7 +53,7 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         data: {
           ...state.data,
-          rows: _.filter(state.data.rows, x => x.id !== action.payload);
+          rows: _.filter(state.data.rows, x => x.id !== action.payload)
         }
       };
 
