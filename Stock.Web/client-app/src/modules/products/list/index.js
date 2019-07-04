@@ -7,10 +7,14 @@ const initialState = {
 };
 
 /* Action Types */
-const LOADING = "PRODUCTS/LOADING";
-const LOAD = "PRODUCTS/LOAD";
+const LOADING = "PRODUCTS_LOADING";
+const SET = "PRODUCTS_SET";
+export const ActionTypes = {
+  LOADING,
+  SET
+};
 
-/* Reducer */
+/* Reducer handlers */
 function handleLoading(state, { loading }) {
   return {
     ...state,
@@ -18,7 +22,7 @@ function handleLoading(state, { loading }) {
   };
 }
 
-function handleLoad(state, { products }) {
+function handleSet(state, { products }) {
   return {
     ...state,
     all: products
@@ -27,7 +31,7 @@ function handleLoad(state, { products }) {
 
 const handlers = {
   [LOADING]: handleLoading,
-  [LOAD]: handleLoad
+  [SET]: handleSet
 };
 
 export default function reducer(state = initialState, action) {
@@ -36,36 +40,44 @@ export default function reducer(state = initialState, action) {
 }
 
 /* Actions */
-export function loading(status) {
+export function setLoading(status) {
   return {
     type: LOADING,
     loading: status
   };
 }
 
-export function load(products) {
+export function setProducts(products) {
   return {
-    type: LOAD,
+    type: SET,
     products
   };
 }
 
-export function getAll(params = {}) {
+export function fetchAll(params = {}) {
   return function(dispatch) {
-    dispatch(loading(true));
+    dispatch(setLoading(true));
     return api
       .get("/product", { params })
       .then(response => {
-        dispatch(load(response.data));
-        dispatch(loading(false));
+        dispatch(setProducts(response.data));
+        dispatch(setLoading(false));
       })
       .catch(error => {
-        dispatch(loading(false));
+        dispatch(setLoading(false));
         apiErrorToast(error);
       });
   };
 }
 
+export function fetchById(id) {
+  return fetchAll({ id });
+}
+
 /* Selectors */
-export const getProducts = state => state.product.all;
-export const getLoadingStatus = state => state.product.loading;
+export function getProducts(state) {
+  return state.product.list.all;
+}
+export function getLoading(state) {
+  state.product.list.loading;
+}
