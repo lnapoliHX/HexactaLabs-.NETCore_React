@@ -6,7 +6,7 @@ import Layout from "../../components/Layout";
 import HomePage from "../home/container/HomePage";
 import LoginPage from "../auth/containers/LoginPage";
 import ProviderPage from "../providers/list/container/Page";
-import ProductPage from "../products/list/container/Page";
+import ProductPage from "../products/list/container/ProductsPage";
 import LogoutPage from "../auth/containers/LogoutPage";
 
 import PropTypes from "prop-types";
@@ -31,7 +31,7 @@ const App = props => (
 );
 
 Private.propTypes = {
-  children: PropTypes.object
+  children: PropTypes.array
 };
 
 App.displayName = "App";
