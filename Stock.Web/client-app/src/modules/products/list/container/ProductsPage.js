@@ -7,26 +7,17 @@ export class ProductsPage extends Component {
   constructor() {
     super();
     this.state = {
-      products: [],
       filters: {}
     };
   }
 
   componentDidMount() {
-    this.fetchProducts();
+    this.props.fetchAll(this.state.filters);
   }
-
-  fetchProducts = () => {
-    this.props.fetchAll(this.state.filters).then(() => {
-      this.setState({
-        products: this.props.products
-      });
-    });
-  };
 
   submitFilters = event => {
     event.preventDefault();
-    this.fetchProducts();
+    this.props.fetchAll(this.state.filters);
   };
 
   filterChanged = event => {
@@ -40,7 +31,7 @@ export class ProductsPage extends Component {
   render() {
     return (
       <Products
-        data={this.state.products}
+        data={this.props.products}
         defaultPageSize={5}
         filters={this.state.filters}
         handleFilter={this.filterChanged}
