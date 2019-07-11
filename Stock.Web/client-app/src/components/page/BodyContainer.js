@@ -5,7 +5,7 @@ import { Col } from "reactstrap";
 const BodyContainer = ({ children }) => <Col>{children}</Col>;
 
 BodyContainer.propTypes = {
-  children: PropTypes.element
+  children: PropTypes.node
 };
 
 export default BodyContainer;
