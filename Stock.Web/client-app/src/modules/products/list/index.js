@@ -1,9 +1,11 @@
 import api from "../../../common/api";
 import { apiErrorToast } from "../../../common/api/apiErrorToast";
+import { normalize } from "../../../common/helpers/normalizer";
 
 const initialState = {
   loading: false,
   all: [],
+  byId: {},
   types: []
 };
 
@@ -28,7 +30,8 @@ function handleLoading(state, { loading }) {
 function handleSet(state, { products }) {
   return {
     ...state,
-    all: products
+    all: products.map(product => product.id),
+    byId: normalize(products)
   };
 }
 
@@ -79,11 +82,11 @@ export function fetchAll(params = {}) {
       .get("/product", { params })
       .then(response => {
         dispatch(setProducts(response.data));
-        dispatch(setLoading(false));
+        return dispatch(setLoading(false));
       })
       .catch(error => {
-        dispatch(setLoading(false));
         apiErrorToast(error);
+        return dispatch(setLoading(false));
       });
   };
 }
@@ -125,12 +128,37 @@ export function fetchTypeById(id) {
 }
 
 /* Selectors */
+function base(state) {
+  return state.product.list;
+}
+
 export function getLoading(state) {
-  return state.product.list.loading;
+  return base(state).loading;
 }
-export function getProducts(state) {
-  return state.product.list.all;
+
+export function getProductsById(state) {
+  return base(state).byId;
 }
+
+export function getProductIds(state) {
+  return base(state).all;
+}
+
+export function makeGetProductsMemoized() {
+  let cache;
+  let value = [];
+  return state => {
+    if (cache === getProductsById(state)) {
+      return value;
+    }
+    cache = getProductsById(state);
+    value = Object.values(getProductsById(state));
+    return value;
+  };
+}
+
+export const getProducts = makeGetProductsMemoized();
+
 export function getProductTypes(state) {
   return state.product.list.types;
 }

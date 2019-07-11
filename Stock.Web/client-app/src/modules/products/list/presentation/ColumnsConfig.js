@@ -30,12 +30,12 @@ const columns = [
   },
   {
     Header: <HeaderComponent title="Marca" />,
-    accessor: "brand",
+    accessor: "productTypeDesc",
     Cell: props => props.value
   },
   {
     Header: <HeaderComponent title="Tipo" />,
-    accessor: "type",
+    accessor: "productTypeId",
     Cell: props => props.value
   }
 ];
