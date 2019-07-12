@@ -23,53 +23,65 @@ const Search = props => {
         <Row>
           <Col>
             <FormGroup>
-              <Label for="idInput">Id</Label>
+              <Label for="idInput" hidden>
+                Id
+              </Label>
               <Input
                 name="id"
                 id="idInput"
                 type="text"
                 onChange={props.handleFilter}
-                value={props.filters.id || ""}
+                value={props.filters.id}
+                placeholder="Id"
               />
             </FormGroup>
           </Col>
           <Col>
             <FormGroup>
-              <Label for="nameInput">Nombre</Label>
+              <Label for="nameInput" hidden>
+                Nombre
+              </Label>
               <Input
                 name="name"
                 id="nameInput"
                 type="text"
                 onChange={props.handleFilter}
-                value={props.filters.name || ""}
+                value={props.filters.name}
+                placeholder="Nombre"
               />
             </FormGroup>
           </Col>
           <Col>
             <FormGroup>
-              <Label for="brandInput">Marca</Label>
+              <Label for="brandInput" hidden>
+                Marca
+              </Label>
               <Input
                 name="brand"
                 id="brandInput"
                 type="text"
                 onChange={props.handleFilter}
-                value={props.filters.brand || ""}
+                value={props.filters.brand}
+                placeholder="Marca"
               />
             </FormGroup>
           </Col>
           <Col>
             <FormGroup>
-              <Label for="typeInput">Tipo</Label>
+              <Label for="typeInput" hidden>
+                Tipo
+              </Label>
               <Input
                 name="type"
                 id="typeInput"
                 type="text"
                 onChange={props.handleFilter}
-                value={props.filters.type || ""}
+                value={props.filters.type}
+                placeholder="Tipo"
               />
             </FormGroup>
           </Col>
-          <Col style={searchButtonStyle}>
+          <Col>
             <Button color="primary">
               <MdSearch /> Buscar
             </Button>
@@ -84,11 +96,6 @@ Search.propTypes = {
   handleFilter: PropTypes.func.isRequired,
   submitFilter: PropTypes.func.isRequired,
   filters: PropTypes.object.isRequired
-};
-
-const searchButtonStyle = {
-  display: "flex",
-  alignItems: "center"
 };
 
 export default Search;
