@@ -1,13 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Switch, Route } from "react-router-dom";
+import { push } from "connected-react-router";
 import Products from "../presentation/Products";
+import Create from "../../create/container";
 import { fetchAll, getProducts, getLoading } from "../index";
+import Spinner from "../../../../components/loading/spinner";
 
 export class ProductsPage extends Component {
   constructor() {
     super();
     this.state = {
-      filters: {}
+      filters: {
+        id: "",
+        name: "",
+        type: "",
+        brand: ""
+      }
     };
   }
 
@@ -29,15 +38,31 @@ export class ProductsPage extends Component {
   };
 
   render() {
+    const urls = {
+      create: `${this.props.match.url}/create`
+    };
+
     return (
-      <Products
-        data={this.props.products}
-        defaultPageSize={5}
-        filters={this.state.filters}
-        handleFilter={this.filterChanged}
-        submitFilter={this.submitFilters}
-        dataLoading={this.props.loading}
-      />
+      <Spinner loading={this.props.loading}>
+        <Switch>
+          <Route path={urls.create} component={Create} />
+          <Route
+            render={props => (
+              <Products
+                data={this.props.products}
+                defaultPageSize={5}
+                filters={this.state.filters}
+                handleFilter={this.filterChanged}
+                submitFilter={this.submitFilters}
+                dataLoading={this.props.loading}
+                urls={urls}
+                push={this.props.push}
+                {...props}
+              />
+            )}
+          />
+        </Switch>
+      </Spinner>
     );
   }
 }
@@ -47,7 +72,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  fetchAll
+  fetchAll,
+  push
 };
 
 export default connect(
