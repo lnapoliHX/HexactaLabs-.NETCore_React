@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Input, Label, FormFeedback } from "reactstrap";
+import { Input, Label, FormFeedback, FormGroup } from "reactstrap";
 
-const RenderSelectableField = props => {
+const SelectField = props => {
   const {
     multiple,
     input,
@@ -13,12 +13,12 @@ const RenderSelectableField = props => {
   } = props;
 
   return (
-    <div className="px-0 py-0">
-      <Label for={input.name}>{label}</Label>
+    <FormGroup>
+      <Label htmlFor={input.name}>{label}</Label>
       <Input
         {...input}
         valid={touched && !error && !pristine}
-        invalid={touched && error}
+        invalid={touched && !!error}
         name={input.name}
         id={input.name}
         type={type || "select"}
@@ -31,17 +31,17 @@ const RenderSelectableField = props => {
         ))}
       </Input>
       <FormFeedback>{error}</FormFeedback>
-    </div>
+    </FormGroup>
   );
 };
 
-RenderSelectableField.propTypes = {
+SelectField.propTypes = {
   multiple: PropTypes.bool,
   input: PropTypes.object,
   label: PropTypes.string,
   type: PropTypes.string,
-  options: PropTypes.object,
+  options: PropTypes.array,
   meta: PropTypes.object
 };
 
-export default RenderSelectableField;
+export default SelectField;

@@ -13,7 +13,7 @@ const renderToolbar = ({ ...props }) => {
   );
 
   let editButton = (
-    <Link to={`/product/edit/${props.value}`}>
+    <Link to={`/product/update/${props.value}`}>
       <button>
         <FaEdit />
       </button>
@@ -30,7 +30,9 @@ const renderToolbar = ({ ...props }) => {
 
   return (
     <span>
-      {viewButton} {editButton} {removeButton}{" "}
+      {viewButton}
+      {editButton}
+      {removeButton}
     </span>
   );
 };
