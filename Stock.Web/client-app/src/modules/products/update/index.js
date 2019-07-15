@@ -14,7 +14,7 @@ export function update(product) {
   return function(dispatch) {
     dispatch(setLoading(true));
     return api
-      .put(`/product/${product.id}`, { body: product })
+      .put(`/product/${product.id}`, product)
       .then(() => {
         dispatch(success(product));
         return dispatch(setLoading(false));

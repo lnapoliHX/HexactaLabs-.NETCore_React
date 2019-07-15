@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Container, Row, Col } from "reactstrap";
 import { goBack } from "connected-react-router";
-import Form from "../../form/presentational";
+import Form from "../../form/presentation";
 import { update } from "..";
 import { getProductTypes, getProductById } from "../../list";
 
@@ -40,7 +40,10 @@ Update.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  productTypeOptions: getProductTypes(state),
+  productTypeOptions: getProductTypes(state).map(pt => ({
+    label: pt.initials,
+    value: pt.id
+  })),
   initialValues: getProductById(state, ownProps.match.params.id)
 });
 
