@@ -32,3 +32,6 @@ msbuild.wrn
 # Visual Studio 2015
 .vs/
 $tf/
+
+#Litedb File
+Stock.Api/stockdb.db
