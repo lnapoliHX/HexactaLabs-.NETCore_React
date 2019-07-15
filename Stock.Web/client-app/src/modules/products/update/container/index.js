@@ -1,30 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Container, Row, Col, Alert } from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 import { goBack } from "connected-react-router";
 import Form from "../../form/presentational";
-import { create } from "../../create";
-import { getProductTypes } from "../../list";
+import { update } from "..";
+import { getProductTypes, getProductById } from "../../list";
 
-const Create = ({ create: onSubmit, goBack: onCancel, productTypeOptions }) => {
+const Update = ({
+  initialValues,
+  update: onSubmit,
+  goBack: onCancel,
+  productTypeOptions
+}) => {
   return (
     <Container fluid>
       <Row>
-        <h2>Nuevo Producto</h2>
+        <h2>Edición</h2>
       </Row>
-      {productTypeOptions.length === 0 ? (
-        <Row>
-          <Col>
-            <Alert color="warning">
-              No existen tipos de productos. Click aquí para cargar nuevos tipos
-            </Alert>
-          </Col>
-        </Row>
-      ) : null}
       <Row>
         <Col>
           <Form
+            initialValues={initialValues}
             productTypeOptions={productTypeOptions}
             onSubmit={onSubmit}
             handleCancel={onCancel}
@@ -35,22 +32,24 @@ const Create = ({ create: onSubmit, goBack: onCancel, productTypeOptions }) => {
   );
 };
 
-Create.propTypes = {
+Update.propTypes = {
   productTypeOptions: PropTypes.array.isRequired,
-  create: PropTypes.func.isRequired,
+  initialValues: PropTypes.object.isRequired,
+  update: PropTypes.func.isRequired,
   goBack: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
-  productTypeOptions: getProductTypes(state)
+const mapStateToProps = (state, ownProps) => ({
+  productTypeOptions: getProductTypes(state),
+  initialValues: getProductById(state, ownProps.match.params.id)
 });
 
 const mapDispatchToProps = {
-  create,
+  update,
   goBack
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Create);
+)(Update);

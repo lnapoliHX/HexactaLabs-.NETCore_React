@@ -14,7 +14,7 @@ export function create(product) {
   return function(dispatch) {
     dispatch(setLoading(true));
     return api
-      .post(`/product/`, { body: product })
+      .post(`/product/`, product)
       .then(() => {
         // todo: para cuando la api devuelva un id
         // dispatch(success({ id: response.data.id, ...product }));

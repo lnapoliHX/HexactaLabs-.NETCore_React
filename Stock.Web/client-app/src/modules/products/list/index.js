@@ -7,7 +7,10 @@ const initialState = {
   loading: false,
   ids: [],
   byId: {},
-  types: []
+  types: [
+    { label: "Some Type", value: "1" },
+    { label: "Some Type 2", value: "2" }
+  ]
 };
 
 /* Action Types */
@@ -75,7 +78,7 @@ function handleUpdateProduct(state, { product }) {
 function handleRemoveProduct(state, { id }) {
   return {
     ...state,
-    all: state.all.filter(productId => productId !== id),
+    ids: state.ids.filter(productId => productId !== id),
     byId: Object.keys(state.byId).reduce(
       (acc, productId) =>
         productId !== `${id}`
@@ -126,10 +129,15 @@ export function fetchAll(params = {}) {
   return function(dispatch) {
     dispatch(setLoading(true));
     return api
-      .get("/product", { params: pickBy(params) })
+      .get("/producttype")
       .then(response => {
-        dispatch(setProducts(response.data));
-        return dispatch(setLoading(false));
+        dispatch(setProductTypes(response.data));
+        return api
+          .get("/product", { params: pickBy(params) })
+          .then(response => {
+            dispatch(setProducts(response.data));
+            return dispatch(setLoading(false));
+          });
       })
       .catch(error => {
         apiErrorToast(error);
@@ -185,6 +193,10 @@ export function getLoading(state) {
 
 export function getProductsById(state) {
   return base(state).byId;
+}
+
+export function getProductById(state, id) {
+  return getProductsById(state)[id] || {};
 }
 
 export function getProductIds(state) {

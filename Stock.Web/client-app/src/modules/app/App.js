@@ -6,7 +6,7 @@ import Layout from "../../components/Layout";
 import HomePage from "../home/container/HomePage";
 import LoginPage from "../auth/containers/LoginPage";
 import ProviderPage from "../providers/list/container/Page";
-import ProductPage from "../products/list/container/ProductsPage";
+import ProductPage from "../products/page/";
 import LogoutPage from "../auth/containers/LogoutPage";
 
 import PropTypes from "prop-types";

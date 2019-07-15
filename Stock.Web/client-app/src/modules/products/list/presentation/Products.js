@@ -1,15 +1,6 @@
-import "./products.css";
 import React from "react";
 import { FaPlus } from "react-icons/fa";
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  FormGroup,
-  Label,
-  Button
-} from "reactstrap";
+import { Container, Row, Col, FormGroup, Button } from "reactstrap";
 import columns from "./ColumnsConfig";
 import ReactTable from "react-table";
 import Search from "./ProductSearch";

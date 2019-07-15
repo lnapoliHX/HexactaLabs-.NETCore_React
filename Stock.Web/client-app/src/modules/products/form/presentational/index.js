@@ -1,39 +1,59 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Field, reduxForm } from "redux-form";
-import { Form, FormGroup, Label, Input, Button } from "reactstrap";
+import { Form, Button } from "reactstrap";
+import Validator from "../../../../common/helpers/YupValidator";
+import SelectField from "../../../../components/inputs/SelectField";
+import InputField from "../../../../components/inputs/InputField";
+import schema from "../validation";
 
 const ProductForm = props => {
-  const { handleSubmit } = props;
+  const { handleSubmit, handleCancel } = props;
   return (
     <Form onSubmit={handleSubmit}>
-      <FormGroup>
-        <Label htmlFor="name">Nombre</Label>
-        <Field name="name" component={Input} type="text" />
-      </FormGroup>
-      <FormGroup>
-        <Label htmlFor="costPrice">Precio de costo</Label>
-        <Field name="costPrice" component={Input} type="text" />
-      </FormGroup>
-      <FormGroup>
-        <Label htmlFor="salePrice">Precio de venta</Label>
-        <Field name="salePrice" component={Input} type="text" />
-      </FormGroup>
-      <FormGroup>
-        <Label htmlFor="productType">Tipo de producto</Label>
-        <Field name="productType" component={Input} type="select" />
-      </FormGroup>
-      <Button color="primary" type="submit">
-        Submit
+      <Field label="Nombre" name="name" component={InputField} type="text" />
+      <Field
+        label="Precio de costo"
+        name="costPrice"
+        component={InputField}
+        type="text"
+      />
+      <Field
+        label="Precio de venta"
+        name="salePrice"
+        component={InputField}
+        type="text"
+      />
+      <Field
+        name="productTypeId"
+        label="Tipo de producto"
+        component={SelectField}
+        type="select"
+        options={props.productTypeOptions}
+      />
+      <Button className="product-form__button" color="primary" type="submit">
+        Guardar
+      </Button>
+      <Button
+        className="product-form__button"
+        color="secondary"
+        type="button"
+        onClick={handleCancel}
+      >
+        Cancelar
       </Button>
     </Form>
   );
 };
 
 ProductForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired
+  handleSubmit: PropTypes.func.isRequired,
+  handleCancel: PropTypes.func.isRequired,
+  productTypeOptions: PropTypes.array.isRequired
 };
 
 export default reduxForm({
-  form: "product"
+  form: "product",
+  validate: Validator(schema),
+  enableReinitialize: true
 })(ProductForm);
