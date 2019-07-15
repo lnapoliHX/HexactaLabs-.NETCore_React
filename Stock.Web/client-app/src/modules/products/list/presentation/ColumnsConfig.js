@@ -5,26 +5,26 @@ import { FaEdit, FaTrash, FaSearch } from "react-icons/fa";
 
 const renderToolbar = ({ ...props }) => {
   let viewButton = (
-    <Link to={`/product/view/${props.value}`}>
-      <button>
-        <FaSearch />
-      </button>
+    <Link className="product-list__button" to={`/product/view/${props.value}`}>
+      <FaSearch className="product-list__button-icon" />
     </Link>
   );
 
   let editButton = (
-    <Link to={`/product/update/${props.value}`}>
-      <button>
-        <FaEdit />
-      </button>
+    <Link
+      className="product-list__button"
+      to={`/product/update/${props.value}`}
+    >
+      <FaEdit className="product-list__button-icon" />
     </Link>
   );
 
   let removeButton = (
-    <Link to={`/product/remove/${props.value}`}>
-      <button>
-        <FaTrash />
-      </button>
+    <Link
+      className="product-list__button"
+      to={`/product/remove/${props.value}`}
+    >
+      <FaTrash className="product-list__button-icon" />
     </Link>
   );
 

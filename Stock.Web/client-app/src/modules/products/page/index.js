@@ -6,6 +6,7 @@ import { Switch, Route } from "react-router-dom";
 import List from "../list/container";
 import Create from "../create/container";
 import Update from "../update/container";
+import Remove from "../remove/container";
 import { getLoading, fetchAll } from "../list";
 import Spinner from "../../../components/loading/spinner";
 
@@ -16,7 +17,8 @@ export class ProductsPage extends Component {
   render() {
     const urls = {
       create: `${this.props.match.url}/create`,
-      edit: `${this.props.match.url}/update/:id`
+      edit: `${this.props.match.url}/update/:id`,
+      remove: `${this.props.match.url}/remove/:id`
     };
 
     return (
@@ -28,6 +30,7 @@ export class ProductsPage extends Component {
             render={() => <List urls={urls} loading={this.props.loading} />}
           />
         </Switch>
+        <Route path={urls.remove} component={Remove} />
       </Spinner>
     );
   }

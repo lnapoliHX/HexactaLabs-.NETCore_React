@@ -16,13 +16,15 @@ const ProductForm = props => {
         label="Precio de costo"
         name="costPrice"
         component={InputField}
-        type="text"
+        type="number"
+        parse={v => Number.parseInt(v)}
       />
       <Field
         label="Precio de venta"
         name="salePrice"
         component={InputField}
-        type="text"
+        type="number"
+        parse={v => Number.parseInt(v)}
       />
       <Field
         name="productTypeId"
@@ -30,6 +32,7 @@ const ProductForm = props => {
         component={SelectField}
         type="select"
         options={props.productTypeOptions}
+        parse={v => Number.parseInt(v)}
       />
       <Button className="product-form__button" color="primary" type="submit">
         Guardar
