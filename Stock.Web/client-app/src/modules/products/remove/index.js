@@ -1,6 +1,7 @@
 import api from "../../../common/api";
 import { apiErrorToast } from "../../../common/api/apiErrorToast";
 import { setLoading, ActionTypes } from "../list";
+import { replace } from "connected-react-router";
 
 /* Actions */
 function success(id) {
@@ -17,7 +18,8 @@ export function remove(id) {
       .delete(`/product/${id}`)
       .then(() => {
         dispatch(success(id));
-        return dispatch(setLoading(false));
+        dispatch(setLoading(false));
+        return dispatch(replace("/product"));
       })
       .catch(error => {
         apiErrorToast(error);
