@@ -10,11 +10,13 @@ import PropTypes from "prop-types";
 const Presentation = props => {
   return (
     <Container fluid>
-      <Row>
-        <h1>Productos</h1>
+      <Row className="my-1">
+        <Col>
+          <h1>Productos</h1>
+        </Col>
       </Row>
       <Row>
-        <Col md={12}>
+        <Col>
           <Search
             handleFilter={props.handleFilter}
             submitFilter={props.submitFilter}
@@ -22,22 +24,20 @@ const Presentation = props => {
           />
         </Col>
       </Row>
-      <Row>
-        <Col md={12}>
-          <FormGroup>
-            <Button
-              className="product__button"
-              color="primary"
-              onClick={() => props.push(props.urls.create)}
-            >
-              <FaPlus className="product__button-icon" />
-              Agregar
-            </Button>
-          </FormGroup>
+      <Row className="my-1">
+        <Col>
+          <Button
+            className="product__button"
+            color="primary"
+            onClick={() => props.push(props.urls.create)}
+          >
+            <FaPlus className="product__button-icon" />
+            Agregar
+          </Button>
         </Col>
       </Row>
-      <Row>
-        <Col md={12}>
+      <Row className="my-3">
+        <Col>
           <ReactTable
             {...props}
             data={props.data}

@@ -1,24 +1,13 @@
 import React from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Button
-} from "reactstrap";
+import { Row, Col, Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { MdSearch } from "react-icons/md";
 
 import PropTypes from "prop-types";
 
 const Search = props => {
   return (
-    <Container fluid>
-      <Row>
-        <h4>Búsqueda</h4>
-      </Row>
+    <React.Fragment>
+      <h4>Búsqueda</h4>
       <Form onSubmit={props.submitFilter}>
         <Row>
           <Col>
@@ -88,7 +77,7 @@ const Search = props => {
           </Col>
         </Row>
       </Form>
-    </Container>
+    </React.Fragment>
   );
 };
 
