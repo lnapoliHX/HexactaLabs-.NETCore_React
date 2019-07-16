@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace Stock.Repository.Exceptions
+namespace Stock.Repository.LiteDb.Exceptions
 {
     public class RepositoryException: Exception
     {

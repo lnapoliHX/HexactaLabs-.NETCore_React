@@ -6,7 +6,7 @@ namespace Stock.Model.Entities
     [Table("producttype")]
     public class ProductType: IEntity
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public string Initials { get; set; }
 

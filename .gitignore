@@ -12,6 +12,7 @@ project.lock.json
 *.user
 *.userosscache
 *.sln.docstates
+*.db
 
 # Build results
 [Dd]ebug/
@@ -31,3 +32,6 @@ msbuild.wrn
 # Visual Studio 2015
 .vs/
 $tf/
+
+#Litedb File
+Stock.Api/stockdb.db
