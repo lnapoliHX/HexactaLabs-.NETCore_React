@@ -63,7 +63,7 @@ namespace Stock.Api.Controllers
         {
             TryValidateModel(value);
             var product = this.mapper.Map<Product>(value);
-            product.ProductType = this.productTypeService.Get(value.ProductTypeId.Value.ToString());
+            product.ProductType = this.productTypeService.Get(value.ProductTypeId.ToString());
             this.service.Create(product);
         }
 
@@ -78,7 +78,7 @@ namespace Stock.Api.Controllers
             var product = this.service.Get(id);
             TryValidateModel(value);
             this.mapper.Map<ProductDTO, Product>(value, product);
-            product.ProductType = this.productTypeService.Get(value.ProductTypeId.Value.ToString());
+            product.ProductType = this.productTypeService.Get(value.ProductTypeId.ToString());
             this.service.Update(product);
         }
 

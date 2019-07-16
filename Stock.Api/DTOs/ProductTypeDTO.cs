@@ -4,7 +4,7 @@ namespace Stock.Api.DTOs
 {
     public class ProductTypeDTO
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Required]
         public string Initials { get; set; }
