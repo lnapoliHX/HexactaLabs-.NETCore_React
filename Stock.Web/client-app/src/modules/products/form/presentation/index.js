@@ -32,7 +32,6 @@ const ProductForm = props => {
         component={SelectField}
         type="select"
         options={props.productTypeOptions}
-        parse={v => Number.parseInt(v)}
       />
       <Button className="product-form__button" color="primary" type="submit">
         Guardar

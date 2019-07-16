@@ -12,7 +12,7 @@ class ProductRemovePage extends React.Component {
     return (
       <ProductRemove
         remove={() =>
-          this.props.remove(Number.parseInt(this.props.match.params.id))
+          this.props.remove(this.props.match.params.id)
         }
         goBack={() => this.props.replace("/product")}
       />
