@@ -96,8 +96,6 @@ namespace Stock.Api
 
             applicationLifetime.ApplicationStopping.Register(OnShutdown);                        
             app.UseMvc();
-
-            DataSeed.SeedData(app);
         }
     }
 }
