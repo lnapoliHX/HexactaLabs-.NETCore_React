@@ -86,7 +86,7 @@ HeaderComponent.propTypes = {
 };
 
 renderToolbar.propTypes = {
-  value: PropTypes.number.isRequired
+  value: PropTypes.string.isRequired
 };
 
 export default columns;
