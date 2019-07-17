@@ -29,3 +29,7 @@
 .product-list__button-icon {
   margin-top: -4px;
 }
+
+.product-view__button-row {
+  float: right;
+}

@@ -2,11 +2,19 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getProductById } from "../../list/index";
 import Product from "../presentation";
+import Remove from "../../remove/container";
+import { push } from "connected-react-router";
+import { Route } from "react-router-dom";
 import PropType from "prop-types";
 
 export class ProductsViewPage extends Component {
   render() {
-    return <Product {...this.props} />;
+    return (
+      <React.Fragment>
+        <Product {...this.props} />
+        <Route path={`/product/view/:id/remove`} component={Remove} />
+      </React.Fragment>
+    );
   }
 }
 
@@ -20,7 +28,11 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
+const mapDispatchToProps = {
+  push
+};
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(ProductsViewPage);

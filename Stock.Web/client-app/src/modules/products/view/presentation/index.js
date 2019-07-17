@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Button } from "reactstrap";
 import PropTypes from "prop-types";
 
 const ProductView = props => {
@@ -28,12 +28,31 @@ const ProductView = props => {
         <Col lg="2">Descripción</Col>
         <Col>{props.product.productTypeDesc}</Col>
       </Row>
+      <br />
+      <div className="product-view__button-row">
+        <Button
+          color="primary"
+          onClick={() => props.push(`/product/update/${props.match.params.id}`)}
+        >
+          Editar
+        </Button>{" "}
+        <Button
+          color="secondary"
+          onClick={() =>
+            props.push(`/product/view/${props.match.params.id}/remove`)
+          }
+        >
+          Eliminar
+        </Button>{" "}
+      </div>
     </Container>
   );
 };
 
 ProductView.propTypes = {
-  product: PropTypes.object.isRequired
+  product: PropTypes.object.isRequired,
+  push: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired
 };
 
 export default ProductView;

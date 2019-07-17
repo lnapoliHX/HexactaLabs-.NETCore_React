@@ -1,20 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
-
-import ProductRemove from "../presentation/ProductRemove";
-import { remove } from "../index";
 import { replace } from "connected-react-router";
-
 import PropTypes from "prop-types";
+import ProductRemove from "../presentation";
+import { remove } from "../index";
 
 class ProductRemovePage extends React.Component {
   render() {
+    const goBackPath =
+      this.props.match.url.indexOf("view") > -1
+        ? `/product/view/${this.props.match.params.id}`
+        : "/product";
     return (
       <ProductRemove
-        remove={() =>
-          this.props.remove(this.props.match.params.id)
-        }
-        goBack={() => this.props.replace("/product")}
+        remove={() => this.props.remove(this.props.match.params.id)}
+        goBack={() => this.props.replace(goBackPath)}
       />
     );
   }
