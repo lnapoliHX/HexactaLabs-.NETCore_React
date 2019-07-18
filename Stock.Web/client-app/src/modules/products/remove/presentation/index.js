@@ -2,16 +2,16 @@ import React from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
 import PropTypes from "prop-types";
 
-const ElementRemove = props => {
+const ElementRemove = ({ remove, goBack }) => {
   return (
-    <Modal isOpen={true}>
+    <Modal isOpen>
       <ModalHeader>Eliminar producto</ModalHeader>
       <ModalBody>¿Desea eliminar este producto?</ModalBody>
       <ModalFooter>
-        <Button color="primary" onClick={props.remove}>
+        <Button color="danger" onClick={remove}>
           Sí
         </Button>
-        <Button color="secondary" onClick={props.goBack}>
+        <Button color="secondary" onClick={goBack}>
           No
         </Button>
       </ModalFooter>

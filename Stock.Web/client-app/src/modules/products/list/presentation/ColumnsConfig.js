@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { FaEdit, FaTrash, FaSearch } from "react-icons/fa";
 
-const renderToolbar = ({ ...props }) => {
+const renderToolbar = ({ value }) => {
   let viewButton = (
-    <Link className="product-list__button" to={`/product/view/${props.value}`}>
+    <Link className="product-list__button" to={`/product/view/${value}`}>
       <FaSearch className="product-list__button-icon" />
     </Link>
   );
@@ -13,7 +13,7 @@ const renderToolbar = ({ ...props }) => {
   let editButton = (
     <Link
       className="product-list__button"
-      to={`/product/update/${props.value}`}
+      to={`/product/update/${value}`}
     >
       <FaEdit className="product-list__button-icon" />
     </Link>
@@ -22,7 +22,7 @@ const renderToolbar = ({ ...props }) => {
   let removeButton = (
     <Link
       className="product-list__button"
-      to={`/product/remove/${props.value}`}
+      to={`/product/remove/${value}`}
     >
       <FaTrash className="product-list__button-icon" />
     </Link>

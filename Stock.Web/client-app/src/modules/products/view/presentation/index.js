@@ -31,19 +31,21 @@ const ProductView = props => {
       <br />
       <div className="product-view__button-row">
         <Button
+        className="product-form__button"
           color="primary"
           onClick={() => props.push(`/product/update/${props.match.params.id}`)}
         >
           Editar
-        </Button>{" "}
+        </Button>
         <Button
-          color="secondary"
+        className="product-form__button"
+          color="danger"
           onClick={() =>
             props.push(`/product/view/${props.match.params.id}/remove`)
           }
         >
           Eliminar
-        </Button>{" "}
+        </Button>
       </div>
     </Container>
   );
