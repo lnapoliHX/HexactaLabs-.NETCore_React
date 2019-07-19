@@ -4,7 +4,7 @@ import { Row, Col, FormGroup } from "reactstrap";
 
 import FormToolbar from "./Toolbar";
 
-import RenderField from "../../../components/inputs/RenderFieldUpdate";
+import RenderField from "../../../components/inputs/InputField";
 
 import PropTypes from "prop-types";
 

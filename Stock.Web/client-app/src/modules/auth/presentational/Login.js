@@ -5,7 +5,7 @@ import { FormGroup } from "reactstrap";
 import "./Login.css";
 
 import Validator from "../../../common/helpers/YupValidator";
-import RenderField from "../../../components/inputs/RenderFieldUpdate";
+import RenderField from "../../../components/inputs/InputField";
 import schema from "../schema";
 import { reduxForm, Field } from "redux-form";
 

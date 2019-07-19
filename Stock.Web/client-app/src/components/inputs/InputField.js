@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Label, Input, FormFeedback } from "reactstrap";
+import { Label, Input, FormFeedback, FormGroup } from "reactstrap";
 
-const RenderFieldUpdate = props => {
+const InputField = props => {
   const {
     input,
     label,
@@ -12,27 +12,27 @@ const RenderFieldUpdate = props => {
   } = props;
 
   return (
-    <div className="px-0 py-0">
-      {label && <Label for={input.name}>{label}</Label>}
+    <FormGroup>
+      <Label htmlFor={input.name}>{label}</Label>
       <Input
         valid={touched && !error && !pristine}
-        invalid={touched && error}
+        invalid={touched && !!error}
         {...input}
         id={input.name}
         placeholder={placeholder}
         type={type}
       />
       <FormFeedback>{error}</FormFeedback>
-    </div>
+    </FormGroup>
   );
 };
 
-RenderFieldUpdate.propTypes = {
+InputField.propTypes = {
   input: PropTypes.object,
-  label: PropTypes.string,
+  label: PropTypes.string.isRequired,
   type: PropTypes.string,
   meta: PropTypes.object,
   placeholder: PropTypes.string
 };
 
-export default RenderFieldUpdate;
+export default InputField;

@@ -11,33 +11,39 @@
 // // Learn more about service workers: https://bit.ly/CRA-PWA
 // serviceWorker.unregister();
 
-import 'bootstrap'
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.bundle';
-import 'bootstrap/dist/js/bootstrap'
+import "bootstrap";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.bundle";
+import "bootstrap/dist/js/bootstrap";
 // import './vendor/sb-admin-2.css'
-import 'react-table/react-table.css'
-import 'react-widgets/dist/css/react-widgets.css';
+import "react-table/react-table.css";
+import "react-widgets/dist/css/react-widgets.css";
 
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 
-import { createBrowserHistory } from 'history';
-import configureStore from './store/configureStore';
-import { ConnectedRouter } from 'connected-react-router'
-import App from './modules/app/App'
-import 'react-toastify/dist/ReactToastify.css';
+import { createBrowserHistory } from "history";
+import configureStore from "./store/configureStore";
+import { ConnectedRouter } from "connected-react-router";
+import App from "./modules/app/App";
+import "react-toastify/dist/ReactToastify.css";
 
-const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
+const baseUrl = document.getElementsByTagName("base")[0].getAttribute("href");
 const history = createBrowserHistory({ basename: baseUrl });
 const initialState = window.initialReduxState;
 const store = configureStore(history, initialState);
 
-const menu_factory = (title, to, icon, children = []) => ({ title, to, icon, children })
+const menu_factory = (title, to, icon, children = []) => ({
+  title,
+  to,
+  icon,
+  children
+});
 
 const menu = [
-  menu_factory("Proovedor", "/provider", "algun-icon")
+  menu_factory("Proovedor", "/provider", "algun-icon"),
+  menu_factory("Categorías", "/product-type", "algun-icon")
 ];
 
 ReactDOM.render(
@@ -46,5 +52,5 @@ ReactDOM.render(
       <App menu={menu} />
     </ConnectedRouter>
   </Provider>,
-  document.getElementById('root')
-)
+  document.getElementById("root")
+);

@@ -7,6 +7,7 @@ import { reducer as formReducer } from "redux-form";
 import auth from "../modules/auth";
 import home from "../modules/home";
 import provider from "../modules/providers";
+import productType from "../modules/productType";
 //TODO WHEN API EXISTS
 
 export default function configureStore(history, initialState) {
@@ -15,7 +16,8 @@ export default function configureStore(history, initialState) {
     router: connectRouter(history),
     auth,
     home,
-    provider
+    provider,
+    productType
   };
 
   const middleware = [thunk, routerMiddleware(history)];
