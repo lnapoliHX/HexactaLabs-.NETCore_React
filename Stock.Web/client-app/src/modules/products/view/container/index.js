@@ -11,7 +11,7 @@ export class ProductsViewPage extends Component {
   render() {
     return (
       <React.Fragment>
-        <Product product={this.props.product} />
+        <Product product={this.props.product} {...this.props} />
         <Route path="/product/view/:id/remove" component={Remove} />
       </React.Fragment>
     );
