@@ -18,7 +18,7 @@ export default function configureStore(history, initialState) {
     auth,
     home,
     provider,
-    product
+    product,
     productType
   };
 
