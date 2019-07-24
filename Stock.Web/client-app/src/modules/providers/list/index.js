@@ -49,12 +49,11 @@ export default function reducer(state = initialState, action = {}) {
       };
 
     case REMOVE_ELEMENT_AT:
-      let filtered = _.filter(state.data.rows, x => x.id !== action.payload);
       return {
         ...state,
         data: {
           ...state.data,
-          rows: filtered
+          rows: _.filter(state.data.rows, x => x.id !== action.payload)
         }
       };
 
