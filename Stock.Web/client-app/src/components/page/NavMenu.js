@@ -28,7 +28,7 @@ export default class NavMenu extends React.Component {
   }
   render() {
     return (
-      <Navbar dark color="dark" expand="md">
+      <Navbar dark color="secondary" expand="md">
         <NavbarBrand>Hexacta Labs</NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
