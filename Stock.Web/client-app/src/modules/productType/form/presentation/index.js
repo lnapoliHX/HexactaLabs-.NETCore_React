@@ -11,13 +11,13 @@ const ProductForm = props => {
   return (
     <Form onSubmit={handleSubmit}>
       <Field
-        label="Initials"
+        label="Iniciales"
         name="initials"
         component={InputField}
         type="text"
       />
       <Field
-        label="Description"
+        label="Descripción"
         name="description"
         component={InputField}
         type="text"
