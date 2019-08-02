@@ -33,6 +33,14 @@ const ProductView = ({ type = {}, push, match }) => {
         >
           Eliminar
         </Button>
+        <Button
+          outline
+          className="product-form__button"
+          color="secondary"
+          onClick={() => push(`/product-type`)}
+        >
+          Volver
+        </Button>
       </div>
     </Container>
   );

@@ -34,7 +34,7 @@ function handleNewProductType(state, { productType }) {
   if (!productType.id) {
     return state;
   }
-  return state;
+  return { ...state, types: state.types.concat(productType) };
 }
 
 function handleRemove(state, { id }) {
@@ -85,7 +85,7 @@ export function setProductTypes(types) {
 }
 
 export function fetchAll() {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch(setLoading(true));
     return api
       .get("/producttype")
@@ -100,7 +100,7 @@ export function fetchAll() {
 }
 
 export function fetchById(id) {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch(setLoading(true));
     return api
       .get(`/producttype/${id}`)

@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import { setLoading, actionTypes } from "../list";
 import api from "../../../common/api";
+import { goBack } from "connected-react-router";
 
 const success = productType => ({
   type: actionTypes.CREATE,
@@ -15,7 +16,8 @@ export function create(productType) {
       .then(() => {
         toast.success("El nuevo tipo se creó con exito");
         dispatch(success(productType));
-        return dispatch(setLoading(false));
+        dispatch(setLoading(false));
+        return dispatch(goBack());
       })
       .catch(() => {
         return dispatch(setLoading(false));
