@@ -29,12 +29,11 @@ namespace Stock.Repository.LiteDb.Repository
 
         public void Delete(T entity)
         {
-            Update(entity);
+            this.collection.Delete(x => x.Id == entity.Id);
         }
 
         public T GetById(string id)
         {
-            
             var item = this.collection.Find(x => x.Id == id).ToList().FirstOrDefault();
             return item;
         }
