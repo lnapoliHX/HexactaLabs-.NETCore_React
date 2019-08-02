@@ -4,7 +4,7 @@ using Stock.Model.Entities;
 
 namespace Stock.Api.MapperProfiles
 {
-    public class ModelProfile: Profile
+    public class ModelProfile : Profile
     {
         public ModelProfile()
         {
@@ -18,9 +18,12 @@ namespace Stock.Api.MapperProfiles
                 .ForMember(d => d.ProductTypeDesc, opt => opt.MapFrom(s => s.ProductType.Description))
                 .ReverseMap()
                 .ForMember(s => s.Id, opt => opt.Ignore())
-                .ForMember(s => s.ProductType, opt => opt.Ignore());                
-        }        
+                .ForMember(s => s.ProductType, opt => opt.Ignore());
+            
+            CreateMap<Provider, ProviderDTO>()
+                .ForMember(x => x.OfferedProducts, opt => opt.Ignore());
+        }
     }
 
-    
+
 }
