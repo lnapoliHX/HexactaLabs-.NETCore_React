@@ -1,6 +1,8 @@
 import api from "../../../common/api";
 import { apiErrorToast } from "../../../common/api/apiErrorToast";
 import { setLoading, ActionTypes } from "../list";
+import { toast } from "react-toastify";
+import { goBack } from "connected-react-router";
 
 /* Actions */
 function success(product) {
@@ -16,8 +18,10 @@ export function update(product) {
     return api
       .put(`/product/${product.id}`, product)
       .then(() => {
+        toast.success("El producto se editó con exito");
         dispatch(success(product));
-        return dispatch(setLoading(false));
+        dispatch(setLoading(false));
+        return dispatch(goBack());
       })
       .catch(error => {
         apiErrorToast(error);
