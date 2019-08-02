@@ -8,6 +8,7 @@ import auth from "../modules/auth";
 import home from "../modules/home";
 import provider from "../modules/providers";
 import product from "../modules/products";
+import productType from "../modules/productType";
 //TODO WHEN API EXISTS
 
 export default function configureStore(history, initialState) {
@@ -17,7 +18,8 @@ export default function configureStore(history, initialState) {
     auth,
     home,
     provider,
-    product
+    product,
+    productType
   };
 
   const middleware = [thunk, routerMiddleware(history)];

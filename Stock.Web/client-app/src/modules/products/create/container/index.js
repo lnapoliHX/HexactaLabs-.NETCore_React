@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Container, Row, Col, Alert } from "reactstrap";
+import { Link } from "react-router-dom";
 import { goBack } from "connected-react-router";
 import Form from "../../form/presentation";
 import { create } from "../../create";
@@ -17,7 +18,9 @@ const Create = ({ create: onSubmit, goBack: onCancel, productTypeOptions }) => {
         <Row>
           <Col>
             <Alert color="warning">
-              No existen tipos de productos. Click aquí para cargar nuevos tipos
+              No existen categorías. Click&nbsp;
+              <Link to="../product-type/create">aquí</Link> para cargar nuevas
+              categorías.
             </Alert>
           </Col>
         </Row>
