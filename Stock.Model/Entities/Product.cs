@@ -15,7 +15,6 @@ namespace Stock.Model.Entities
 
         public decimal SalePrice { get; set; }
 
-        //[ForeignKey("ProductTypeId")]
         public virtual ProductType ProductType { get; set; }
 
         private int _stock;
@@ -40,5 +39,8 @@ namespace Stock.Model.Entities
         {
             this._stock += value;
         }
+
+        public string ProviderId { get; set; }
+        public Provider Provider { get; set; }
     }
 }
