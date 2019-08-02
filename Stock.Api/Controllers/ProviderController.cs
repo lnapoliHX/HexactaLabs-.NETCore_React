@@ -57,11 +57,11 @@ namespace Stock.Api.Controllers
         /// </summary>
         /// <param name="value">Una instancia</param>
         [HttpPost]
-        public void Post([FromBody] ProviderDTO value)
+        public ProviderDTO Post([FromBody] ProviderDTO value)
         {
             TryValidateModel(value);
-            var product = this.mapper.Map<Provider>(value);
-            this.service.Create(product);
+            var provider = this.service.Create(this.mapper.Map<Provider>(value));
+            return this.mapper.Map<ProviderDTO>(provider);
         }
 
         /// <summary>
