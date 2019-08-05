@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { push } from "connected-react-router";
 import PropTypes from "prop-types";
 import { getProviders } from "../index";
 import Presentation from "../presentation";
@@ -28,7 +29,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  getProviders
+  getProviders,
+  push
 };
 
 export default connect(

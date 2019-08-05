@@ -1,8 +1,10 @@
+import "./providers.css";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 import List from "../list/container";
+import Create from "../create/container";
 import Remove from "../remove/container";
 import { getLoading, getAll } from "../list";
 import Spinner from "../../../components/loading/spinner";
@@ -23,6 +25,7 @@ export class Page extends Component {
     return (
       <Spinner loading={this.props.loading}>
         <Switch>
+          <Route path={urls.create} component={Create} />
           <Route
             render={() => <List urls={urls} loading={this.props.loading} />}
           />

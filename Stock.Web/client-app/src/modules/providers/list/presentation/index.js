@@ -1,6 +1,7 @@
 import React from "react";
 import columns from "./ColumnsConfig";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Button } from "reactstrap";
+import { FaPlus } from "react-icons/fa";
 import ReactTable from "react-table";
 
 import PropTypes from "prop-types";
@@ -11,6 +12,18 @@ const Presentation = props => {
       <Row className="my-1">
         <Col>
           <h1>Proveedores</h1>
+        </Col>
+      </Row>
+      <Row className="my-1">
+        <Col>
+          <Button
+            className="provider__button"
+            color="primary"
+            onClick={() => props.push(props.urls.create)}
+          >
+            <FaPlus className="provider__button-icon" />
+            Agregar
+          </Button>
         </Col>
       </Row>
       <Row className="my-3">
@@ -32,7 +45,9 @@ const Presentation = props => {
 Presentation.propTypes = {
   data: PropTypes.array.isRequired,
   dataLoading: PropTypes.bool.isRequired,
-  defaultPageSize: PropTypes.number
+  defaultPageSize: PropTypes.number,
+  urls: PropTypes.shape({ create: PropTypes.string }),
+  push: PropTypes.func.isRequired
 };
 
 export default Presentation;

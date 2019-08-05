@@ -1,69 +1,31 @@
-import { replace } from "connected-react-router";
+import api from "../../../common/api";
+import { goBack } from "connected-react-router";
+import { apiErrorToast } from "../../../common/api/apiErrorToast";
+import { setLoading, ActionTypes } from "../list";
 import { toast } from "react-toastify";
 
-//import { api } from '../../shared/index';
-
-export const LOAD_ELEMENT = "PROVIDER/CREATE/LOAD_CREATE_ELEMENT";
-export const LOADED_ELEMENT = "PROVIDER/CREATE/LOADED_CREATE_ELEMENT";
-export const REQUEST_CREATE_ELEMENT = "PROVIDER/CREATE/REQUEST_PROVIDER";
-export const RESPONSE_CREATE_PROVIDER = "PROVIDER/CREATE/RESPONSE_PROVIDER";
-export const ERROR_CREATE_PROVIDER = "PROVIDER/CREATE/ERROR_PROVIDER";
-
-let initialState = {
-  element: {
-    name: "",
-    phone: "",
-    email: ""
-  },
-
-  loading: false,
-  error: null
-};
-
-export default function reducer(state = initialState, action = {}) {
-  switch (action.type) {
-    case REQUEST_CREATE_ELEMENT:
-      return { ...state, loading: true };
-    case RESPONSE_CREATE_PROVIDER:
-      return { ...state, loading: false };
-    case ERROR_CREATE_PROVIDER:
-      return { ...state, loading: false, error: action.error };
-    default:
-      return state;
-  }
+/* Actions */
+function success(provider) {
+  return {
+    type: ActionTypes.CREATE,
+    provider
+  };
 }
 
-export const create = element => dispatch => {
-  dispatch({ type: REQUEST_CREATE_ELEMENT });
-  dispatch({ type: RESPONSE_CREATE_PROVIDER });
-  // api.post("provider", element)
-  //     .then((response) => {
-  //         dispatch({ type: RESPONSE_CREATE_PROVIDER, payload: response.data })
-  //         let location = { pathname: "/provider", created: element.id }
-  //         dispatch(replace(location));
-  //         toast.success("proveedor Modificado")
-  //     })
-  //     .catch((error) => {
-  //         dispatch({ type: ERROR_CREATE_PROVIDER, error: error })
-  //         toast.error("Error al modificar proveedor")
-  //     })
-};
-
-export const load = id => (dispatch, state) => {
-  // dispatch({ type: LOAD_ELEMENT })
-  // api.get(`/provider/${id}`)
-  //     .then(res => {
-  //         let order = res.data
-  //         if (order) {
-  //             dispatch({ type: LOADED_ELEMENT, payload: order })
-  //         } else {
-  //             dispatch(replace('/provider'));
-  //             toast.warn("No se puede editar el proveedor seleccionado")
-  //         }
-  //     })
-};
-
-export const goBack = () => dispatch => {
-  dispatch(replace("/provider"));
-  toast.info("Edición cancelada");
-};
+export function create(provider) {
+  return function(dispatch) {
+    dispatch(setLoading(true));
+    return api
+      .post(`/provider/`, provider)
+      .then(response => {
+        toast.success("El proveedor se creó con éxito");
+        dispatch(success(response.data));
+        dispatch(setLoading(false));
+        return dispatch(goBack());
+      })
+      .catch(error => {
+        apiErrorToast(error);
+        return dispatch(setLoading(false));
+      });
+  };
+}
