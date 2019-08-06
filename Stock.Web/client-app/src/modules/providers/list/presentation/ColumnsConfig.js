@@ -14,7 +14,7 @@ const renderToolbar = ({ ...props }) => {
   );
 
   let editButton = (
-    <Link to={`/provider/edit/${props.value}`}>
+    <Link to={`/provider/update/${props.value}`}>
       <button>
         <FaEdit />
       </button>
