@@ -3,6 +3,7 @@ import columns from "./ColumnsConfig";
 import { Container, Row, Col, Button } from "reactstrap";
 import { FaPlus } from "react-icons/fa";
 import ReactTable from "react-table";
+import Search from "./ProviderSearch";
 
 import PropTypes from "prop-types";
 
@@ -12,6 +13,15 @@ const Presentation = props => {
       <Row className="my-1">
         <Col>
           <h1>Proveedores</h1>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Search
+            handleFilter={props.handleFilter}
+            submitFilter={props.submitFilter}
+            filters={props.filters}
+          />
         </Col>
       </Row>
       <Row className="my-1">
@@ -44,8 +54,11 @@ const Presentation = props => {
 
 Presentation.propTypes = {
   data: PropTypes.array.isRequired,
+  filters: PropTypes.object.isRequired,
   dataLoading: PropTypes.bool.isRequired,
   defaultPageSize: PropTypes.number,
+  handleFilter: PropTypes.func.isRequired,
+  submitFilter: PropTypes.func.isRequired,
   urls: PropTypes.shape({ create: PropTypes.string }),
   push: PropTypes.func.isRequired
 };
