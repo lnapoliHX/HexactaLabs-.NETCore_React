@@ -76,5 +76,16 @@ namespace Stock.Api.Controllers
             this.mapper.Map<ProviderDTO, Provider>(value, provider);
             this.service.Update(provider);
         }
+
+        /// <summary>
+        /// Permite borrar una instancia
+        /// </summary>
+        /// <param name="id">Identificador de la instancia a borrar</param>
+        [HttpDelete("{id}")]
+        public void Delete(string id)
+        {
+            var provider = this.service.Get(id);
+            this.service.Delete(provider);
+        }
     }
 }
