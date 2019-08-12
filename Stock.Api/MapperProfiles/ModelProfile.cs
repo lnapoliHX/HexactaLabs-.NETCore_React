@@ -4,7 +4,7 @@ using Stock.Model.Entities;
 
 namespace Stock.Api.MapperProfiles
 {
-    public class ModelProfile: Profile
+    public class ModelProfile : Profile
     {
         public ModelProfile()
         {
@@ -25,5 +25,5 @@ namespace Stock.Api.MapperProfiles
         }        
     }
 
-    
+
 }

@@ -54,10 +54,6 @@ function handleSetTypes(state, { types }) {
 }
 
 function handleNewProduct(state, { product }) {
-  if (!product) {
-    // todo: cuando la api devuelva un id este if se borra
-    return state;
-  }
   return {
     ...state,
     ids: state.ids.concat([product.id]),
