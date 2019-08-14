@@ -7,53 +7,68 @@ import { goBack } from "connected-react-router";
 import Form from "../../form/presentation";
 import { create } from "../../create";
 import { getProductTypes } from "../../list";
+import { getProviders, getAll } from "../../../providers/list";
 
-const Create = ({ create: onSubmit, goBack: onCancel, productTypeOptions }) => {
-  return (
-    <Container fluid>
-      <Row>
-        <h2>Nuevo Producto</h2>
-      </Row>
-      {productTypeOptions.length === 0 ? (
+class Create extends React.Component {
+  componentDidMount() {
+    this.props.getAll();
+  }
+
+  render() {
+    return (
+      <Container fluid>
+        <Row>
+          <h2>Nuevo Producto</h2>
+        </Row>
+        {this.props.productTypeOptions.length === 0 ? (
+          <Row>
+            <Col>
+              <Alert color="warning">
+                No existen categorías. Click&nbsp;
+                <Link to="../product-type/create">aquí</Link> para cargar nuevas
+                categorías.
+              </Alert>
+            </Col>
+          </Row>
+        ) : null}
         <Row>
           <Col>
-            <Alert color="warning">
-              No existen categorías. Click&nbsp;
-              <Link to="../product-type/create">aquí</Link> para cargar nuevas
-              categorías.
-            </Alert>
+            <Form
+              productTypeOptions={this.props.productTypeOptions}
+              providerOptions={this.props.providerOptions}
+              onSubmit={this.props.create}
+              handleCancel={this.props.goBack}
+            />
           </Col>
         </Row>
-      ) : null}
-      <Row>
-        <Col>
-          <Form
-            productTypeOptions={productTypeOptions}
-            onSubmit={onSubmit}
-            handleCancel={onCancel}
-          />
-        </Col>
-      </Row>
-    </Container>
-  );
-};
+      </Container>
+    );
+  }
+}
 
 Create.propTypes = {
   productTypeOptions: PropTypes.array.isRequired,
+  providerOptions: PropTypes.array.isRequired,
   create: PropTypes.func.isRequired,
-  goBack: PropTypes.func.isRequired
+  goBack: PropTypes.func.isRequired,
+  getAll: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   productTypeOptions: getProductTypes(state).map(pt => ({
     label: pt.initials,
     value: pt.id
+  })),
+  providerOptions: getProviders(state).map(provider => ({
+    label: provider.name,
+    value: provider.id
   }))
 });
 
 const mapDispatchToProps = {
   create,
-  goBack
+  goBack,
+  getAll
 };
 
 export default connect(
