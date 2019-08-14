@@ -1,14 +1,5 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from "redux";
 
-import list from './list'
-import remove from './remove'
-import update from './update'
-import create from './create'
+import list from "./list";
 
-let reducer = combineReducers({})
-
-reducer = combineReducers({
-    list, remove, update, create
-});
-
-export default reducer;
+export default combineReducers({ list });
