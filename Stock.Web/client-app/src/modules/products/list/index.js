@@ -2,6 +2,7 @@ import { cloneDeep, pickBy } from "lodash";
 import api from "../../../common/api";
 import { apiErrorToast } from "../../../common/api/apiErrorToast";
 import { normalize } from "../../../common/helpers/normalizer";
+import { setProviders } from "../../providers/list";
 
 const initialState = {
   loading: false,
@@ -128,12 +129,15 @@ export function fetchAll(params = {}) {
       .get("/producttype")
       .then(response => {
         dispatch(setProductTypes(response.data));
-        return api
-          .get("/product", { params: pickBy(params) })
-          .then(response => {
-            dispatch(setProducts(response.data));
-            return dispatch(setLoading(false));
-          });
+        return api.get("/provider").then(response => {
+          dispatch(setProviders(response.data));
+          return api
+            .get("/product", { params: pickBy(params) })
+            .then(response => {
+              dispatch(setProducts(response.data));
+              return dispatch(setLoading(false));
+            });
+        });
       })
       .catch(error => {
         apiErrorToast(error);
