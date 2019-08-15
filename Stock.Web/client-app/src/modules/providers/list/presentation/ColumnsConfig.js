@@ -4,30 +4,21 @@ import { FaEdit, FaTrash, FaSearch } from "react-icons/fa";
 
 import PropTypes from "prop-types";
 
-const renderToolbar = ({ ...props }) => {
+const renderToolbar = ({ value }) => {
   let viewButton = (
-    <Link
-      className="provider-list__button"
-      to={`/provider/view/${props.value}`}
-    >
+    <Link className="provider-list__button" to={`/provider/view/${value}`}>
       <FaSearch className="provider-list__button-icon" />
     </Link>
   );
 
   let editButton = (
-    <Link
-      className="provider-list__button"
-      to={`/provider/update/${props.value}`}
-    >
+    <Link className="provider-list__button" to={`/provider/update/${value}`}>
       <FaEdit className="provider-list__button-icon" />
     </Link>
   );
 
   let removeButton = (
-    <Link
-      className="provider-list__button"
-      to={`/provider/remove/${props.value}`}
-    >
+    <Link className="provider-list__button" to={`/provider/remove/${value}`}>
       <FaTrash className="provider-list__button-icon" />
     </Link>
   );
@@ -76,7 +67,7 @@ const columns = [
     Cell: props => props.value
   },
   {
-    Header: <HeaderComponent title="Opciones" />,
+    Header: <HeaderComponent title="Acciones" />,
     accessor: "id",
     Cell: renderToolbar
   }
