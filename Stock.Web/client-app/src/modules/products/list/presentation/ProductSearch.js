@@ -71,6 +71,24 @@ const Search = props => {
             </FormGroup>
           </Col>
           <Col>
+            <FormGroup>
+              <Label for="provider" hidden>
+                Proveedor
+              </Label>
+              <Input
+                name="provider"
+                id="provider"
+                type="select"
+                onChange={props.handleFilter}
+                placeholder="Proveedor"
+              >
+                {props.filters.providers.map(provider => (
+                  <option key={provider.value}>{provider.label}</option>
+                ))}
+              </Input>
+            </FormGroup>
+          </Col>
+          <Col>
             <Button color="primary">
               <MdSearch /> Buscar
             </Button>
