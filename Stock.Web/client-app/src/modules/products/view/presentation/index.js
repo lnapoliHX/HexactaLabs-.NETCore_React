@@ -29,6 +29,24 @@ const ProductView = props => {
         <Col>{props.product.productTypeDesc}</Col>
       </Row>
       <br />
+      <h4>Proveedor</h4>
+      <Row>
+        <Col lg="2">Id</Col>
+        <Col>{props.provider.id}</Col>
+      </Row>
+      <Row>
+        <Col lg="2">Nombre</Col>
+        <Col>{props.provider.name}</Col>
+      </Row>
+      <Row>
+        <Col lg="2">Email</Col>
+        <Col>{props.provider.email}</Col>
+      </Row>
+      <Row>
+        <Col lg="2">Teléfono</Col>
+        <Col>{props.provider.phone}</Col>
+      </Row>
+      <br />
       <div className="product-view__button-row">
         <Button
           className="product-form__button"
@@ -49,9 +67,7 @@ const ProductView = props => {
         <Button
           className="product-form__button"
           color="default"
-          onClick={() =>
-            props.push(`/product`)
-          }
+          onClick={() => props.push(`/product`)}
         >
           Volver
         </Button>
@@ -62,6 +78,7 @@ const ProductView = props => {
 
 ProductView.propTypes = {
   product: PropTypes.object.isRequired,
+  provider: PropTypes.object.isRequired,
   push: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired
 };

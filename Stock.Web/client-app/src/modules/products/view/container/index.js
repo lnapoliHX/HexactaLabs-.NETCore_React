@@ -6,12 +6,13 @@ import Remove from "../../remove/container";
 import { push } from "connected-react-router";
 import { Route } from "react-router-dom";
 import PropType from "prop-types";
+import { getProviderById } from "../../../providers/list";
 
 export class ProductsViewPage extends Component {
   render() {
     return (
       <React.Fragment>
-        <Product product={this.props.product} {...this.props} />
+        <Product {...this.props} />
         <Route path="/product/view/:id/remove" component={Remove} />
       </React.Fragment>
     );
@@ -23,8 +24,10 @@ ProductsViewPage.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
+  const product = getProductById(state, ownProps.match.params.id);
   return {
-    product: getProductById(state, ownProps.match.params.id)
+    product,
+    provider: getProviderById(state, product.providerId)
   };
 };
 
