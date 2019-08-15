@@ -6,6 +6,8 @@ using Stock.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using Stock.Api.Extensions;
 
 namespace Stock.Api.Controllers
 {
@@ -80,6 +82,30 @@ namespace Stock.Api.Controllers
             this.mapper.Map<ProductDTO, Product>(value, product);
             product.ProductType = this.productTypeService.Get(value.ProductTypeId.ToString());
             this.service.Update(product);
+        }
+
+        [HttpPost("/search")]
+        public ActionResult Search([FromBody] ProductSearchDTO model)
+        {
+            Expression<Func<Product, bool>> filter = x => !string.IsNullOrWhiteSpace(x.Id);
+
+            if (!string.IsNullOrWhiteSpace(model.Id))
+            {
+                filter = filter.AndCustom(x => x.Id.Equals(model.Id));
+            }
+
+            if (!string.IsNullOrWhiteSpace(model.Name))
+            {
+                filter = filter.AndCustom(x => x.Name.ToUpper().Contains(model.Name.ToUpper()));
+            }
+
+            if(!string.IsNullOrWhiteSpace(model.ProductType))
+            {
+                filter = filter.AndCustom(x => x.ProductType.Description.ToUpper().Contains(model.Brand.ToUpper()));
+            }
+
+            var products = this.service.Search(filter);
+            return Ok(products);
         }
 
         /// <summary>
