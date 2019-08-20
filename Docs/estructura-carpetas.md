@@ -48,11 +48,13 @@ Ejemplo de la estructura de un submodulo de entidad:
       |- create
       |- form
       |- list
+      |- page
       |- remove
       |- update
+      |- view
       index.js
 
-- index.js: exporta el reducer combinado de todo el módulo
+- index.js: exporta el reducer combinado de todo el módulo.
 
 - create/update/view/remove: contienen componentes necesarios para llevar a cabo el CRUD de la entidad. Cada uno de ellos se
   puede contener:
@@ -68,3 +70,5 @@ Ejemplo de la estructura de un submodulo de entidad:
       index.js: Si el submódulo necesita exponer actions y/o un reducer. Ejemplo "list" contiene las acciones para fetching y el reducer que tiene la lógica de actualizacion de la lista de items del dominio.
 
 - form: Contiene el componente de `form` compartido entre create y update.
+
+- page: Contiene el componente que define la vista final que se muestra para esta entidad con todas las rutas para acceder a las distintas features del CRUD.
