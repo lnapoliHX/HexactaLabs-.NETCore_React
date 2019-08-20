@@ -7,7 +7,6 @@ import { reducer as formReducer } from "redux-form";
 import auth from "../modules/auth";
 import home from "../modules/home";
 import provider from "../modules/providers";
-//TODO WHEN API EXISTS
 
 export default function configureStore(history, initialState) {
   const reducers = {
