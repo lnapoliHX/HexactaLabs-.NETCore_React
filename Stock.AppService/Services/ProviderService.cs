@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using Microsoft.Extensions.Options;
 using Stock.AppService.Base;
 using Stock.Model.Entities;
@@ -14,6 +17,11 @@ namespace Stock.AppService.Services
             : base(repository)
         {
             this.domainSettings = domainSettings;
+        }
+
+        public IEnumerable<Provider> Search(Expression<Func<Provider,bool>> filter)
+        {
+            return this.Repository.List(filter);
         }
     }
 }
