@@ -5,9 +5,9 @@ namespace Stock.Api.Extensions
 {
     public static class ExpressionExtensions
     {
-        public static Expression<Func<T, bool>> AndCustom<T>(
+        public static Expression<Func<T, bool>> AndOrCustom<T>(
         this Expression<Func<T, bool>> expr1,
-        Expression<Func<T, bool>> expr2, bool isAndAlso = true)
+        Expression<Func<T, bool>> expr2, bool isAnd = true)
         {
             var parameter = Expression.Parameter(typeof(T));
 
@@ -17,7 +17,7 @@ namespace Stock.Api.Extensions
             var rightVisitor = new ReplaceExpressionVisitor(expr2.Parameters[0], parameter);
             var right = rightVisitor.Visit(expr2.Body);
  
-            if (isAndAlso)
+            if (isAnd)
             {
                 return Expression.Lambda<Func<T, bool>>(
                     Expression.AndAlso(left, right), parameter);
@@ -25,13 +25,9 @@ namespace Stock.Api.Extensions
             else
             {
                  return Expression.Lambda<Func<T, bool>>(
-                    Expression.And(left, right), parameter);
-
-            }
-          
+                    Expression.Or(left, right), parameter);
+            }         
         }
-        
-
          private class  ReplaceExpressionVisitor : ExpressionVisitor
         {
             private readonly Expression oldValue;

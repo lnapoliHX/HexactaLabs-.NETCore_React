@@ -89,19 +89,18 @@ namespace Stock.Api.Controllers
         {
             Expression<Func<Product, bool>> filter = x => !string.IsNullOrWhiteSpace(x.Id);
 
-            if (!string.IsNullOrWhiteSpace(model.Id))
-            {
-                filter = filter.AndCustom(x => x.Id.Equals(model.Id));
-            }
-
             if (!string.IsNullOrWhiteSpace(model.Name))
             {
-                filter = filter.AndCustom(x => x.Name.ToUpper().Contains(model.Name.ToUpper()));
+                filter = filter.AndOrCustom(
+                    x => x.Name.ToUpper().Contains(model.Name.ToUpper()),
+                    model.Condition.Equals(ActionDto.AND));
             }
 
-            if(!string.IsNullOrWhiteSpace(model.ProductType))
+            if(!string.IsNullOrWhiteSpace(model.Brand))
             {
-                filter = filter.AndCustom(x => x.ProductType.Description.ToUpper().Contains(model.Brand.ToUpper()));
+                filter = filter.AndOrCustom(
+                    x => x.ProductType.Description.ToUpper().Contains(model.Brand.ToUpper()),
+                    model.Condition.Equals(ActionDto.AND));
             }
 
             var products = this.service.Search(filter);
