@@ -17,7 +17,13 @@ export function remove(id) {
     dispatch(setLoading(true));
     return api
       .delete(`/provider/${id}`)
-      .then(() => {
+      .then((response) => {
+        if (response.data.success == false){
+          toast.error(response.data.message);
+          dispatch(setLoading(false));
+          return dispatch(replace("/provider"));
+        }
+
         toast.success("Se eliminó el proveedor con éxito");
         dispatch(success(id));
         dispatch(setLoading(false));

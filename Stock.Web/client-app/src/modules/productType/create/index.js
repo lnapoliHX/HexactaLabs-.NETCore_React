@@ -13,9 +13,9 @@ export function create(productType) {
     dispatch(setLoading(true));
     return api
       .post("/producttype", productType)
-      .then(() => {
+      .then((response) => {
         toast.success("El nuevo tipo se creó con exito");
-        dispatch(success(productType));
+        dispatch(success(response.data));
         dispatch(setLoading(false));
         return dispatch(goBack());
       })
