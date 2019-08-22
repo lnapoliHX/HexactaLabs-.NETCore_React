@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Stock.Api.DTOs;
 using Stock.AppService.Services;
 using Stock.Model.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Stock.Api.Controllers
 {
@@ -15,11 +17,14 @@ namespace Stock.Api.Controllers
     {
         private readonly ProductTypeService service;
         private readonly IMapper mapper;
+
+        private readonly ProductService productService;
         
-        public ProductTypeController(ProductTypeService service, IMapper mapper)
+        public ProductTypeController(ProductTypeService service, IMapper mapper, ProductService productService)
         {
             this.service = service;
             this.mapper = mapper;
+            this.productService = productService;
         }
 
         /// <summary>
@@ -74,10 +79,21 @@ namespace Stock.Api.Controllers
         /// </summary>
         /// <param name="id">Identificador de la instancia a borrar</param>
         [HttpDelete("{id}")]
-        public void Delete(string id)
+        public ActionResult Delete(string id)
         {
             var productType = this.service.Get(id);
+
+             Expression<Func<Product, bool>> filter = x => x.ProductType.Id.Equals(id);
+
+            var products = this.productService.Search(filter);
+
+            if (products.Count() > 0)
+            {
+               return Ok(new { Success = false, Message = "No se pueden eliminar elementos que tiene productos asociados" });
+            }
+            
             this.service.Delete(productType);
+            return Ok();
         }
     }
 }
