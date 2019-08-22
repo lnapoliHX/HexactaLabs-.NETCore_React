@@ -7,51 +7,49 @@ import { goBack } from "connected-react-router";
 import Form from "../../form/presentation";
 import { create } from "../../create";
 import { getProductTypes } from "../../list";
-import { getProviders, getAll } from "../../../providers/list";
+import { getProviders } from "../../../providers/list";
 
-class Create extends React.Component {
-  componentDidMount() {
-    this.props.getAll();
-  }
-
-  render() {
-    return (
-      <Container fluid>
-        <Row>
-          <h2>Nuevo Producto</h2>
-        </Row>
-        {this.props.productTypeOptions.length === 0 ? (
-          <Row>
-            <Col>
-              <Alert color="warning">
-                No existen categorías. Click&nbsp;
-                <Link to="../product-type/create">aquí</Link> para cargar nuevas
-                categorías.
-              </Alert>
-            </Col>
-          </Row>
-        ) : null}
+const Create = ({
+  create: onSubmit,
+  goBack: onCancel,
+  productTypeOptions,
+  providerOptions
+}) => {
+  return (
+    <Container fluid>
+      <Row>
+        <h2>Nuevo Producto</h2>
+      </Row>
+      {productTypeOptions.length === 0 ? (
         <Row>
           <Col>
-            <Form
-              productTypeOptions={this.props.productTypeOptions}
-              providerOptions={this.props.providerOptions}
-              onSubmit={this.props.create}
-              handleCancel={this.props.goBack}
-            />
+            <Alert color="warning">
+              No existen categorías. Click&nbsp;
+              <Link to="../product-type/create">aquí</Link> para cargar nuevas
+              categorías.
+            </Alert>
           </Col>
         </Row>
-      </Container>
-    );
-  }
-}
+      ) : null}
+      <Row>
+        <Col>
+          <Form
+            productTypeOptions={productTypeOptions}
+            providerOptions={providerOptions}
+            onSubmit={onSubmit}
+            handleCancel={onCancel}
+          />
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
 Create.propTypes = {
   productTypeOptions: PropTypes.array.isRequired,
   providerOptions: PropTypes.array.isRequired,
   create: PropTypes.func.isRequired,
-  goBack: PropTypes.func.isRequired,
-  getAll: PropTypes.func.isRequired
+  goBack: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -67,8 +65,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   create,
-  goBack,
-  getAll
+  goBack
 };
 
 export default connect(
