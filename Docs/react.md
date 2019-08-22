@@ -20,7 +20,7 @@ Existen 2 tipos de componentes: Funcionales y de Clase
 
 ### Componentes funcionales
 
-Son los más simples de entender, ya que es una simple función de Javascript que retorna la estructura que se debe renderizar usando JSX.
+Son los más simples de entender, ya que es una función de Javascript que retorna la estructura que se debe renderizar usando JSX.
 
 ### JSX
 
@@ -59,6 +59,24 @@ Para más detalles. [JSX Docs](https://reactjs.org/docs/introducing-jsx.html)
 
 ### Propiedades (Props)
 
+Cada Componente puede recibir de su padre datos adicionales que necesita en un objeto denominado `props`. Estó permite desligarlo de la responsabilidad de conseguirlos dejandosela al Componente padre.
+
+Visto desde el padre:
+
+```javascript
+const Padre = props => <Hijo dato="dato" />;
+```
+
+En el hijo:
+
+```javascript
+const Hijo = props => <div>`Mostrando ${props.dato}`</div>;
+```
+
+En el hijo este dato aparece como `props.dato` (o `this.props.dato` si se usan componentes de tipo clase). El objeto `props` lo genera React de forma trasparente al desarrollador tomando los atributos JSX definidos.
+
+El objeto `props` no **debe** ser modificado, el Componente solo debe usarlos para cumplir su función.
+
 ### Componentes tipo Clase
 
 Todo elemento de clase debe extender a `Component`.
@@ -70,6 +88,8 @@ class SomeComponent extends Component {...}
 ```
 
 El único método requerido es `render()` y es donde se describe mediante JSX la estructura que se debería renderizar usando otros Componentes y/o elementos del DOM, por ejemplo `div`, `h1`, etc.
+
+[Aquí](https://reactjs.org/docs/components-and-props.html) se profundiza más los temas de Componentes y props.
 
 ### Estado (State)
 
@@ -95,11 +115,13 @@ class SomeComponent extends Component {
 }
 ```
 
-El método `setState()` le dice a React que algo cambió en el componente y este debe ser renderizado nuevamente.
+El método `setState()` le dice a React que algo cambió en el estado del componente y este debe ser renderizado nuevamente.
 
 ### Métodos de ciclo de vida (Lifecycle Methods)
 
 Todo componente en React pasa por un ciclo de vida en el cuál mediante métodos de la API le dan al desarrollador la habilidad de poder escribir lógica que se ejecute en una determinada situación. Un ejemplo común es realizar la búsqueda de datos cuando un componente se monta, ya que este los requiere para poder mostrarlos. El _fetch_ se escribiría en el `componentDidMount()`.
+
+Para utilizar estos métodos en los componentes funcionales, React incorporó hace relativamente poco [Hooks](https://reactjs.org/docs/hooks-intro.html) que permiten "engancharse" a estos componentes en el ciclo de vida.
 
 [Acá](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) se encuentra documentado en forma de gráfico el ciclo de vida completo.
 
