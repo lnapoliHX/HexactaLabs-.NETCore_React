@@ -75,7 +75,7 @@ const mapStateToProps = state => ({
     value: provider.id
   })),
   initialValues: {
-    productTypeId: getProductTypes(state)[0].Id || "default",
+    productTypeId: getProductTypes(state)[0].id || "default",
     providerId: getProviderIds(state)[0] || "default"
   }
 });
