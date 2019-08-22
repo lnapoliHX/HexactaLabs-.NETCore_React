@@ -31,6 +31,16 @@ const Create = ({
           </Col>
         </Row>
       ) : null}
+      {providerOptions.length === 0 ? (
+        <Row>
+          <Col>
+            <Alert color="warning">
+              No existen proveedores. Click&nbsp;
+              <Link to="../provider/create">aquí</Link> para crear uno nuevo.
+            </Alert>
+          </Col>
+        </Row>
+      ) : null}
       <Row>
         <Col>
           <Form
