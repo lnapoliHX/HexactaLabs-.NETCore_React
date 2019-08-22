@@ -125,19 +125,15 @@ export function setProductTypes(types) {
 export function fetchAll(params = {}) {
   return function(dispatch) {
     dispatch(setLoading(true));
-    return api
-      .get("/producttype")
+    let productsPromise = api.get("/product", { params: pickBy(params) });
+    let productTypesPromise = api.get("/producttype");
+    let providersPromise = api.get("/provider", { params: pickBy(params) });
+    return Promise.all([productsPromise, productTypesPromise, providersPromise])
       .then(response => {
-        dispatch(setProductTypes(response.data));
-        return api.get("/provider").then(response => {
-          dispatch(setProviders(response.data));
-          return api
-            .get("/product", { params: pickBy(params) })
-            .then(response => {
-              dispatch(setProducts(response.data));
-              return dispatch(setLoading(false));
-            });
-        });
+        dispatch(setProducts(response[0].data));
+        dispatch(setProductTypes(response[1].data));
+        dispatch(setProviders(response[2].data));
+        dispatch(setLoading(false));
       })
       .catch(error => {
         apiErrorToast(error);
