@@ -2,7 +2,7 @@
 
 ## Introducción
 
-React es una librería de Javascript la cuál es usada para el desarrollo de interfaces de usuario.
+`React` es una librería de Javascript la cuál es usada para el desarrollo de interfaces de usuario.
 Más información se puede encontrar en el siguiente link
 [React Docs](https://reactjs.org/docs/getting-started.html).
 
