@@ -1,3 +1,5 @@
+[Volver](./index.md)
+
 # Redux
 
 ## Introducción
@@ -73,7 +75,7 @@ Documentación de [redux-thunk](https://github.com/reduxjs/redux-thunk).
 
 ## Reducers
 
-Los reducers son funciones puras que describen cómo el estado global tiene que actualizarce dada alguna acción en particular.
+Los reducers son funciones puras que describen cómo el estado global tiene que actualizarse dada alguna acción en particular.
 
 Cualquier reducer puede actuar bajo cualquier tipo de acción. (relación muchos a muchos).
 
@@ -118,8 +120,6 @@ const reducer = (state = initial, action) => {
 ```
 
 Esta estrategia está documentada en Redux [aquí](https://redux.js.org/recipes/reducing-boilerplate#generating-reducers).
-
-## Store
 
 ## Flujo de datos
 
