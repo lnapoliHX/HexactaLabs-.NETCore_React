@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 import Layout from "../../components/Layout";
 import HomePage from "../home/container/HomePage";
 import LoginPage from "../auth/containers/LoginPage";
-import ProviderPage from "../providers/list/container/Page";
+import ProviderPage from "../providers/page";
 import ProductPage from "../products/page/";
 import LogoutPage from "../auth/containers/LogoutPage";
 import ProductTypePage from "../productType/page";
