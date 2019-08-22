@@ -48,8 +48,7 @@ class ProvidersPage extends React.Component {
 
 ProvidersPage.propTypes = {
   providers: PropTypes.array.isRequired,
-  loading: PropTypes.bool.isRequired,
-  getProviders: PropTypes.func.isRequired
+  loading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => {
@@ -57,7 +56,6 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  getProviders,
   getAll,
   push
 };

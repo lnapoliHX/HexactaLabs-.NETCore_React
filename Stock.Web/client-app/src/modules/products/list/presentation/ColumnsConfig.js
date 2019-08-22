@@ -11,19 +11,13 @@ const renderToolbar = ({ value }) => {
   );
 
   let editButton = (
-    <Link
-      className="product-list__button"
-      to={`/product/update/${value}`}
-    >
+    <Link className="product-list__button" to={`/product/update/${value}`}>
       <FaEdit className="product-list__button-icon" />
     </Link>
   );
 
   let removeButton = (
-    <Link
-      className="product-list__button"
-      to={`/product/remove/${value}`}
-    >
+    <Link className="product-list__button" to={`/product/remove/${value}`}>
       <FaTrash className="product-list__button-icon" />
     </Link>
   );
@@ -64,14 +58,16 @@ const columns = [
     Cell: props => props.value
   },
   {
-    Header: <HeaderComponent title="Marca" />,
+    Header: <HeaderComponent title="Tipo" />,
     accessor: "productTypeDesc",
     Cell: props => props.value
   },
   {
-    Header: <HeaderComponent title="Tipo" />,
-    accessor: "productTypeId",
-    Cell: props => props.value
+    Header: <HeaderComponent title="Proovedor" />,
+    accessor: "providerName",
+    Cell: props => {
+      return props.value;
+    }
   },
   {
     Header: <HeaderComponent title="Acciones" />,

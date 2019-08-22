@@ -7,8 +7,15 @@ import { goBack } from "connected-react-router";
 import Form from "../../form/presentation";
 import { create } from "../../create";
 import { getProductTypes } from "../../list";
+import { getProviders, getProviderIds } from "../../../providers/list";
 
-const Create = ({ create: onSubmit, goBack: onCancel, productTypeOptions }) => {
+const Create = ({
+  create: onSubmit,
+  goBack: onCancel,
+  productTypeOptions,
+  providerOptions,
+  initialValues
+}) => {
   return (
     <Container fluid>
       <Row>
@@ -25,10 +32,22 @@ const Create = ({ create: onSubmit, goBack: onCancel, productTypeOptions }) => {
           </Col>
         </Row>
       ) : null}
+      {providerOptions.length === 0 ? (
+        <Row>
+          <Col>
+            <Alert color="warning">
+              No existen proveedores. Click&nbsp;
+              <Link to="../provider/create">aquí</Link> para crear uno nuevo.
+            </Alert>
+          </Col>
+        </Row>
+      ) : null}
       <Row>
         <Col>
           <Form
+            initialValues={initialValues}
             productTypeOptions={productTypeOptions}
+            providerOptions={providerOptions}
             onSubmit={onSubmit}
             handleCancel={onCancel}
           />
@@ -40,15 +59,25 @@ const Create = ({ create: onSubmit, goBack: onCancel, productTypeOptions }) => {
 
 Create.propTypes = {
   productTypeOptions: PropTypes.array.isRequired,
+  providerOptions: PropTypes.array.isRequired,
   create: PropTypes.func.isRequired,
-  goBack: PropTypes.func.isRequired
+  goBack: PropTypes.func.isRequired,
+  initialValues: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   productTypeOptions: getProductTypes(state).map(pt => ({
     label: pt.initials,
     value: pt.id
-  }))
+  })),
+  providerOptions: getProviders(state).map(provider => ({
+    label: provider.name,
+    value: provider.id
+  })),
+  initialValues: {
+    productTypeId: getProductTypes(state)[0].id || "default",
+    providerId: getProviderIds(state)[0] || "default"
+  }
 });
 
 const mapDispatchToProps = {

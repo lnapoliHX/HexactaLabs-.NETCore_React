@@ -33,6 +33,13 @@ const ProductForm = props => {
         type="select"
         options={props.productTypeOptions}
       />
+      <Field
+        name="providerId"
+        label="Proveedor"
+        component={SelectField}
+        type="select"
+        options={props.providerOptions}
+      />
       <Button className="product-form__button" color="primary" type="submit">
         Guardar
       </Button>
@@ -51,7 +58,8 @@ const ProductForm = props => {
 ProductForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
-  productTypeOptions: PropTypes.array.isRequired
+  productTypeOptions: PropTypes.array.isRequired,
+  providerOptions: PropTypes.array.isRequired
 };
 
 export default reduxForm({

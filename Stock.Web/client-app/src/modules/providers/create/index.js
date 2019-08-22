@@ -19,7 +19,7 @@ export function create(provider) {
       .post(`/provider/`, provider)
       .then(response => {
         toast.success("El proveedor se creó con éxito");
-        dispatch(success(response.data));
+        dispatch(success(response.data.data));
         dispatch(setLoading(false));
         return dispatch(goBack());
       })
