@@ -1,76 +1,31 @@
-import { replace } from "connected-react-router";
+import api from "../../../common/api";
+import { apiErrorToast } from "../../../common/api/apiErrorToast";
+import { setLoading, ActionTypes } from "../list";
 import { toast } from "react-toastify";
-import provider_factory from "../provider.faker";
-//import { api } from '../../shared'
+import { goBack } from "connected-react-router";
 
-export const LOAD_ELEMENT = "PROVIDER/UPDATE/LOAD_CREATE_ELEMENT";
-export const LOADED_ELEMENT = "PROVIDER/UPDATE/LOADED_CREATE_ELEMENT";
-
-export const REQUEST_UPDATE_ELEMENT = "PROVIDER/UPDATE/REQUEST_PROVIDER";
-export const RESPONSE_UPDATE_PROVIDER = "PROVIDER/UPDATE/RESPONSE_PROVIDER";
-export const ERROR_UPDATE_PROVIDER = "PROVIDER/UPDATE/ERROR_PROVIDER";
-
-let initialState = {
-  name: "",
-  phone: "",
-  email: "",
-
-  loading: true,
-  error: null
-};
-
-export default function reducer(state = initialState, action = {}) {
-  switch (action.type) {
-    case LOAD_ELEMENT:
-      return { ...state, loading: true };
-    case LOADED_ELEMENT:
-      return { ...state, loading: false, element: action.payload };
-    case REQUEST_UPDATE_ELEMENT:
-      return { ...state, loading: true };
-    case RESPONSE_UPDATE_PROVIDER:
-      return { ...state, loading: false };
-    case ERROR_UPDATE_PROVIDER:
-      return { ...state, loading: false, error: action.error };
-    default:
-      return state;
-  }
+/* Actions */
+function success(provider) {
+  return {
+    type: ActionTypes.UPDATE,
+    provider
+  };
 }
 
-export const update = element => dispatch => {
-  dispatch({ type: REQUEST_UPDATE_ELEMENT });
-  let location = { pathname: "/provider", updated: element.id };
-  dispatch(replace(location));
-  // api.put("provider", element)
-  //     .then((response) => {
-  //         debugger;
-  //         dispatch({ type: RESPONSE_UPDATE_PROVIDER, payload: response.data })
-
-  //         let location = { pathname: "/provider", updated: element.id }
-  //         dispatch(replace(location));
-  //         toast.success("proveedor Modificado")
-  //     })
-  //     .catch((error) => {
-  //         dispatch({ type: ERROR_UPDATE_PROVIDER, error: error })
-  //         toast.error("Error al modificar proveedor")
-  //     })
-};
-
-export const load = id => (dispatch, state) => {
-  dispatch({ type: LOAD_ELEMENT });
-  dispatch({ type: LOADED_ELEMENT, payload: provider_factory() });
-  // api.get(`/provider/${id}`)
-  //     .then(res => {
-  //         let order = res.data
-  //         if (order) {
-  //             dispatch({ type: LOADED_ELEMENT, payload: order })
-  //         } else {
-  //             dispatch(replace('/provider'));
-  //             toast.warn("No se puede editar el proveedor seleccionado")
-  //         }
-  //     })
-};
-
-export const goBack = () => dispatch => {
-  dispatch(replace("/provider"));
-  toast.info("Edición cancelada");
-};
+export function update(provider) {
+  return function(dispatch) {
+    dispatch(setLoading(true));
+    return api
+      .put(`/provider/${provider.id}`, provider)
+      .then(() => {
+        toast.success("El proveedor se editó con éxito");
+        dispatch(success(provider));
+        dispatch(setLoading(false));
+        return dispatch(goBack());
+      })
+      .catch(error => {
+        apiErrorToast(error);
+        return dispatch(setLoading(false));
+      });
+  };
+}

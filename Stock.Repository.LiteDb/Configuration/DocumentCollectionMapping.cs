@@ -14,7 +14,8 @@ namespace Stock.Repository.LiteDb.Configuration
             TypeCollectionMapping = new Dictionary<Type, string>
             {
                 { typeof(Product), "product" },
-                { typeof(ProductType), "producttype" }
+                { typeof(ProductType), "producttype" },
+                { typeof(Provider), "provider" }
             };
         }
 

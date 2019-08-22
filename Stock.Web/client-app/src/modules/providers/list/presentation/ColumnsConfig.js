@@ -6,32 +6,35 @@ import PropTypes from "prop-types";
 
 const renderToolbar = ({ ...props }) => {
   let viewButton = (
-    <Link to={`/provider/view/${props.value}`}>
-      <button>
-        <FaSearch />
-      </button>
+    <Link
+      className="provider-list__button"
+      to={`/provider/view/${props.value}`}
+    >
+      <FaSearch className="provider-list__button-icon" />
     </Link>
   );
 
   let editButton = (
-    <Link to={`/provider/edit/${props.value}`}>
-      <button>
-        <FaEdit />
-      </button>
+    <Link
+      className="provider-list__button"
+      to={`/provider/update/${props.value}`}
+    >
+      <FaEdit className="provider-list__button-icon" />
     </Link>
   );
 
   let removeButton = (
-    <Link to={`/provider/remove/${props.value}`}>
-      <button>
-        <FaTrash />
-      </button>
+    <Link
+      className="provider-list__button"
+      to={`/provider/remove/${props.value}`}
+    >
+      <FaTrash className="provider-list__button-icon" />
     </Link>
   );
 
   return (
     <span>
-      {viewButton} {editButton} {removeButton}{" "}
+      {viewButton} {editButton} {removeButton}
     </span>
   );
 };
@@ -52,6 +55,11 @@ const HeaderComponent = props => {
 HeaderComponent.displayName = "HeaderComponent";
 
 const columns = [
+  {
+    Header: <HeaderComponent title="ID" />,
+    accessor: "id",
+    Cell: props => props.value
+  },
   {
     Header: <HeaderComponent title="Nombre" />,
     accessor: "name",

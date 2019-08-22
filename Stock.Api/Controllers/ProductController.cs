@@ -6,6 +6,8 @@ using Stock.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using Stock.Api.Extensions;
 
 namespace Stock.Api.Controllers
 {
@@ -59,12 +61,12 @@ namespace Stock.Api.Controllers
         /// </summary>
         /// <param name="value">Una instancia</param>
         [HttpPost]
-        public void Post([FromBody] ProductDTO value)
+        public ProductDTO Post([FromBody] ProductDTO value)
         {
             TryValidateModel(value);
             var product = this.mapper.Map<Product>(value);
             product.ProductType = this.productTypeService.Get(value.ProductTypeId.ToString());
-            this.service.Create(product);
+            return this.mapper.Map<ProductDTO>(this.service.Create(product));
         }
 
         /// <summary>
@@ -80,6 +82,29 @@ namespace Stock.Api.Controllers
             this.mapper.Map<ProductDTO, Product>(value, product);
             product.ProductType = this.productTypeService.Get(value.ProductTypeId.ToString());
             this.service.Update(product);
+        }
+
+        [HttpPost("/search")]
+        public ActionResult Search([FromBody] ProductSearchDTO model)
+        {
+            Expression<Func<Product, bool>> filter = x => !string.IsNullOrWhiteSpace(x.Id);
+
+            if (!string.IsNullOrWhiteSpace(model.Name))
+            {
+                filter = filter.AndOrCustom(
+                    x => x.Name.ToUpper().Contains(model.Name.ToUpper()),
+                    model.Condition.Equals(ActionDto.AND));
+            }
+
+            if(!string.IsNullOrWhiteSpace(model.Brand))
+            {
+                filter = filter.AndOrCustom(
+                    x => x.ProductType.Description.ToUpper().Contains(model.Brand.ToUpper()),
+                    model.Condition.Equals(ActionDto.AND));
+            }
+
+            var products = this.service.Search(filter);
+            return Ok(products);
         }
 
         /// <summary>

@@ -1,134 +1,158 @@
-import _ from "lodash";
-import { replace } from "connected-react-router";
-//import { api } from '../../shared'
-import providerFaker from "../provider.faker";
-
-const FETCHED_PROVIDERS = "PROVIDERS/FETCHED";
-const FETCH_PROVIDERS = "PROVIDERS/FETCH";
-const PAGE_CHANGE = "PROVIDERS/CHANGE_PAGE";
-const REMOVE_ELEMENT_AT = "PROVIDERS/LIST/REMOVE_AT";
+import { cloneDeep, pickBy } from "lodash";
+import { normalize } from "../../../common/helpers/normalizer";
+import api from "../../../common/api";
+import { apiErrorToast } from "../../../common/api/apiErrorToast";
 
 const initialState = {
   loading: false,
-  data: {
-    rows: [],
-    pages: null,
-    loading: false,
-    page: 0,
-    sort: []
-  },
-  defaultPageSize: 5
+  ids: [],
+  byId: {}
 };
 
-export default function reducer(state = initialState, action = {}) {
-  switch (action.type) {
-    case FETCH_PROVIDERS:
-      return {
-        ...state,
-        data: {
-          ...state.data,
-          loading: true
-        }
-      };
-    case FETCHED_PROVIDERS:
-      return {
-        ...state,
-        data: {
-          rows: action.payload.content,
-          loading: false,
-          pages: action.payload.totalPages,
-          page: action.payload.page,
-          sort: action.payload.sort,
-          size: action.payload.size
-        }
-      };
-    case PAGE_CHANGE:
-      return {
-        ...state,
-        defaultPageSize: action.payload
-      };
+/* Action types */
 
-    case REMOVE_ELEMENT_AT:
-      let filtered = _.filter(state.data.rows, x => x.id !== action.payload);
-      return {
-        ...state,
-        data: {
-          ...state.data,
-          rows: filtered
-        }
-      };
+const LOADING = "PROVIDERS_LOADING";
+const SET = "PROVIDERS_SET";
+const CREATE = "PROVIDERS_CREATE";
+const UPDATE = "PROVIDERS_UPDATE";
+const REMOVE = "PROVIDERS_REMOVE";
 
-    default:
-      return state;
-  }
+export const ActionTypes = {
+  LOADING,
+  SET,
+  CREATE,
+  UPDATE,
+  REMOVE
+};
+
+/* Reducer handlers */
+function handleLoading(state, { loading }) {
+  return {
+    ...state,
+    loading
+  };
 }
 
-export const getProviders = (
-  { page, sorted: sort, pageSize: size, ...others } = {
-    page: 0,
-    sort: [],
-    size: 10
-  }
-) => (dispatch, getState) => {
-  dispatch({ type: FETCH_PROVIDERS, payload: {} });
+function handleSet(state, { providers }) {
+  return {
+    ...state,
+    ids: providers.map(provider => provider.id),
+    byId: normalize(providers)
+  };
+}
 
-  let params = new URLSearchParams();
-  sort.forEach(s =>
-    params.append("sort", `${s.id},${s.desc ? "desc" : "asc"}`)
-  );
-  params.append("page", page);
-  params.append("size", size);
-
-  //TODO: MOCK
-  let providers = [];
-  for (let i = 0; i < 30; i++) {
-    providers.push(providerFaker());
-  }
-
-  dispatch({
-    type: FETCHED_PROVIDERS,
-    payload: {
-      page: page,
-      sort: sort,
-      size: size,
-      content: _.slice(providers, page * size, page * size + size),
-      totalPages: Math.round(providers.length / size)
+function handleNewProvider(state, { provider }) {
+  return {
+    ...state,
+    ids: state.ids.concat([provider.id]),
+    byId: {
+      ...state.byId,
+      [provider.id]: cloneDeep(provider)
     }
-  });
+  };
+}
 
-  // api.get("/provider", { params: params })
-  //     .then((result) => {
-  //         debugger;
-  //         dispatch({
-  //             type: FETCHED_PROVIDERS,
-  //             payload:
-  //             {
-  //                 page: page,
-  //                 sort: sort,
-  //                 size: size,
-  //                 content: result.data.content,
-  //                 totalPages: result.data.totalPages
-  //             }
-  //         })
-  //     }).catch(() => {
+function handleUpdateProvider(state, { provider }) {
+  return {
+    ...state,
+    byId: { ...state.byId, [provider.id]: cloneDeep(provider) }
+  };
+}
 
-  //     })
+function handleRemoveProvider(state, { id }) {
+  return {
+    ...state,
+    ids: state.ids.filter(providerId => providerId !== id),
+    byId: Object.keys(state.byId).reduce(
+      (acc, providerId) =>
+        providerId !== `${id}`
+          ? { ...acc, [providerId]: state.byId[providerId] }
+          : acc,
+      {}
+    )
+  };
+}
+
+const handlers = {
+  [LOADING]: handleLoading,
+  [SET]: handleSet,
+  [CREATE]: handleNewProvider,
+  [UPDATE]: handleUpdateProvider,
+  [REMOVE]: handleRemoveProvider
 };
 
-export const onPageSizeChange = others => dispatch => {
-  dispatch({ type: PAGE_CHANGE, payload: others });
-};
+export default function reducer(state = initialState, action) {
+  const handler = handlers[action.type];
+  return handler ? handler(state, action) : state;
+}
 
-export const removeElementAt = id => (dispatch, state) => {
-  dispatch(
-    getProviders({
-      page: state().provider.list.data.page,
-      sorted: state().provider.list.data.sort,
-      pageSize: state().provider.list.defaultPageSize
-    })
-  );
-};
+/* Actions */
+export function setLoading(status) {
+  return {
+    type: LOADING,
+    loading: status
+  };
+}
 
-export const goToCreate = () => dispatch => {
-  dispatch(replace("/provider/new"));
-};
+export function setProviders(providers) {
+  return {
+    type: SET,
+    providers
+  };
+}
+
+export function getAll(params = {}) {
+  return dispatch => {
+    dispatch(setLoading(true));
+    return api
+      .get("/provider", { params: pickBy(params) })
+      .then(response => {
+        dispatch(setProviders(response.data));
+        return dispatch(setLoading(false));
+      })
+      .catch(error => {
+        apiErrorToast(error);
+        return dispatch(setLoading(false));
+      });
+  };
+}
+
+export function getById(id) {
+  return getAll({ id });
+}
+
+/* Selectors */
+function base(state) {
+  return state.provider.list;
+}
+
+export function getLoading(state) {
+  return base(state).loading;
+}
+
+export function getProvidersById(state) {
+  return base(state).byId;
+}
+
+export function getProviderIds(state) {
+  return base(state).ids;
+}
+
+export function getProviderById(state, id) {
+  return getProvidersById(state)[id] || {};
+}
+
+function makeGetProvidersMemoized() {
+  let cache;
+  let value = [];
+  return state => {
+    if (cache === getProvidersById(state)) {
+      return value;
+    }
+    cache = getProvidersById(state);
+    value = Object.values(getProvidersById(state));
+    return value;
+  };
+}
+
+export const getProviders = makeGetProvidersMemoized();
