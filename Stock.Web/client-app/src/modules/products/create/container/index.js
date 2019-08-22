@@ -7,13 +7,14 @@ import { goBack } from "connected-react-router";
 import Form from "../../form/presentation";
 import { create } from "../../create";
 import { getProductTypes } from "../../list";
-import { getProviders } from "../../../providers/list";
+import { getProviders, getProviderIds } from "../../../providers/list";
 
 const Create = ({
   create: onSubmit,
   goBack: onCancel,
   productTypeOptions,
-  providerOptions
+  providerOptions,
+  initialValues
 }) => {
   return (
     <Container fluid>
@@ -44,6 +45,7 @@ const Create = ({
       <Row>
         <Col>
           <Form
+            initialValues={initialValues}
             productTypeOptions={productTypeOptions}
             providerOptions={providerOptions}
             onSubmit={onSubmit}
@@ -70,7 +72,11 @@ const mapStateToProps = state => ({
   providerOptions: getProviders(state).map(provider => ({
     label: provider.name,
     value: provider.id
-  }))
+  })),
+  initialValues: {
+    productTypeId: getProductTypes(state)[0] || "default",
+    providerId: getProviderIds(state)[0] || "default"
+  }
 });
 
 const mapDispatchToProps = {
