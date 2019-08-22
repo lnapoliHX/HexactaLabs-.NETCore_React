@@ -61,7 +61,8 @@ Create.propTypes = {
   productTypeOptions: PropTypes.array.isRequired,
   providerOptions: PropTypes.array.isRequired,
   create: PropTypes.func.isRequired,
-  goBack: PropTypes.func.isRequired
+  goBack: PropTypes.func.isRequired,
+  initialValues: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
