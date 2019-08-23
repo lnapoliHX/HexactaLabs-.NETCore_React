@@ -143,4 +143,8 @@ Para utilizar estos métodos en los componentes funcionales, React incorporó ha
 
 Para información más detallada. [State / Lifecycle Docs](https://reactjs.org/docs/react-component.html)
 
+
+## Referencias
+[Documentación Oficial](https://es.reactjs.org/)
+Componentes Bootstrap4 para React [Reactstrap](https://reactstrap.github.io/)
 Para ver ejercicios de React. [Freecodecamp - React](https://learn.freecodecamp.org/front-end-libraries/react/)
