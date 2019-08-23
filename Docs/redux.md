@@ -19,6 +19,9 @@ El store tiene como responsabilidad usar los reducers para actualizarse ante una
 
 En este proyecto notarán que no se usa el `store.dispatch()` ya que se usa una libreria `react-redux` ([link](https://react-redux.js.org/)) que provee una forma de "conectar" la app de React con el store expuesto de Redux de una manera transparente.
 
+El siguiente gráfico resume el comportamiento de la filosofía:
+![Architecture](./images/redux-architecture.png)
+
 ## Actions
 
 Son objetos planos de javascript que describen algún suceso en particular. Tienen una propiedad obligatoria `"type"` de tipo string usada por los reducers. Cualquier otra prop adicional es opcional, una convención es usar un objeto bajo `"payload"` para que todas las acciones sean uniformes a través de la app.
@@ -138,6 +141,5 @@ La aplicación no puede modificar el store directamente, lo tiene que hacer a tr
 ## Referencias
 [Documentación de Redux - Inglés](https://redux.js.org/introduction/getting-started)
 [Documentación de Redux - Español](https://es.redux.js.org/)
-[Redux-Thunk](https://github.com/reduxjs/redux-thunk)
 [Ejercicios Redux](https://learn.freecodecamp.org/front-end-libraries/redux/)
 [Ejercicios React-Redux](https://learn.freecodecamp.org/front-end-libraries/react-and-redux/)
