@@ -134,3 +134,10 @@ El flujo de datos con Redux es estrictamente unidireccional.
 4. La apliacción se actualiza.
 
 La aplicación no puede modificar el store directamente, lo tiene que hacer a través de las acciones.
+
+## Referencias
+[Documentación de Redux - Inglés](https://redux.js.org/introduction/getting-started)
+[Documentación de Redux - Español](https://es.redux.js.org/)
+[Redux-Thunk](https://github.com/reduxjs/redux-thunk)
+[Ejercicios Redux](https://learn.freecodecamp.org/front-end-libraries/redux/)
+[Ejercicios React-Redux](https://learn.freecodecamp.org/front-end-libraries/react-and-redux/)
