@@ -84,7 +84,7 @@ namespace Stock.Api.Controllers
             this.service.Update(product);
         }
 
-        [HttpPost("/search")]
+        [HttpPost("search")]
         public ActionResult Search([FromBody] ProductSearchDTO model)
         {
             Expression<Func<Product, bool>> filter = x => !string.IsNullOrWhiteSpace(x.Id);
