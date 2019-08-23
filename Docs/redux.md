@@ -12,7 +12,8 @@
 
 Redux permite describir los eventos en la aplicación de forma predecible mediante `actions` (**Qué** pasó) y actualizar el estado global en consecuencia de los mismos usando funciones puras llamadas `reducers` (**Cómo** pasó).
 
-Redux combina estos reducers transaparentemente (usando `combineReducer()`) y expone un contenedor llamado `store`. La aplicación se subscribe a cambios en el mismo y puede despachar acciones usando `store.dispatch()`.
+Redux combina estos reducers transaparentemente (usando `combineReducer()`) y expone un contenedor llamado `store`, el cual actúa como "Single Source of Truth".
+La aplicación se subscribe a cambios en el mismo y puede despachar acciones usando `store.dispatch()`.
 
 El store tiene como responsabilidad usar los reducers para actualizarse ante una acción y avisarle a la app del nuevo estado completando el ciclo.
 
@@ -48,7 +49,7 @@ Así para generar esa acción solo hace falta tener el payload.
 
 ## Action thunks
 
-Es un middleware que se configura al store que permite extender la definición de una acción. Con el las acciones, ademas de ser objetos planos, pueden despachar otras acciones permitiendo escribir flujos más complejos contenidos en una sola función (thunk).
+Es un middleware que se configura al store que permite extender la definición de una acción. Con él las acciones, ademas de ser objetos planos, pueden despachar otras acciones permitiendo escribir flujos más complejos contenidos en una sola función (thunk).
 
 ```javascript
 const plain = { type: "TYPE" };
@@ -75,7 +76,7 @@ Documentación de [redux-thunk](https://github.com/reduxjs/redux-thunk).
 
 ## Reducers
 
-Los reducers son funciones puras que describen cómo el estado global tiene que actualizarse dada alguna acción en particular.
+Los reducers son funciones puras que describen cómo el estado global tiene que actualizarse dada alguna acción en particular. Una función pura es una función la cual no tiene "side-effects" sobre los valores de entrada y siempre devuelve el mismo resultado al ejecutarla con los mismos parámetros
 
 Cualquier reducer puede actuar bajo cualquier tipo de acción. (relación muchos a muchos).
 
@@ -107,12 +108,14 @@ En este proyecto optamos por usar una estructura de reducer usando un objeto de 
 
 ```javascript
 const handleType = (state, action) => {
-  // lágica de actualización
+  // lógica de actualización
   return newState;
 };
+
 const handlers = {
   TYPE: handleType
 };
+
 const reducer = (state = initial, action) => {
   const handler = handlers[action.type];
   return handler ? handler(state, action) : state;
@@ -125,7 +128,7 @@ Esta estrategia está documentada en Redux [aquí](https://redux.js.org/recipes/
 
 El flujo de datos con Redux es estrictamente unidireccional.
 
-1. App despacha acción debido a un evento (ejemplo: click en un botón).
+1. Nuestra app despacha una acción debido a un evento (ejemplo: click en un botón, submit de un form, etc).
 2. Uno/varios reducers actualizan el estado global.
 3. El store le avisa a sus subscriptores del nuevo estado.
 4. La apliacción se actualiza.
