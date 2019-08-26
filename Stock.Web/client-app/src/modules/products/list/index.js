@@ -119,11 +119,11 @@ export function setProductTypes(types) {
   };
 }
 
-export function fetchAll(params = {}) {
+export function fetchAll() {
   return function(dispatch) {
     dispatch(setLoading(true));
     return Promise.all([
-      api.get("/product", { params: pickBy(params) }),
+      api.get("/product"),
       api.get("/producttype"),
       api.get("/provider")
     ])
