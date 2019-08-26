@@ -15,8 +15,8 @@ export function remove(id) {
     dispatch(setLoading(true));
     return api
       .delete(`/producttype/${id}`)
-      .then((response) => {
-        if (response.data.success == false){
+      .then(response => {
+        if (!response.data.success) {
           toast.error(response.data.message);
           dispatch(setLoading(false));
           return dispatch(replace("/product-type"));
