@@ -1,4 +1,4 @@
-import { cloneDeep } from "lodash";
+import { cloneDeep, pickBy } from "lodash";
 import api from "../../../common/api";
 import { apiErrorToast } from "../../../common/api/apiErrorToast";
 import { normalize } from "../../../common/helpers/normalizer";
@@ -119,11 +119,11 @@ export function setProductTypes(types) {
   };
 }
 
-export function fetchAll() {
+export function fetchAll(params = {}) {
   return function(dispatch) {
     dispatch(setLoading(true));
     return Promise.all([
-      api.get("/product"),
+      api.get("/product", { params: pickBy(params) }),
       api.get("/producttype"),
       api.get("/provider")
     ])
@@ -147,7 +147,7 @@ export function fetchById(id) {
 export function fetchByFilters(filters) {
   return function(dispatch) {
     return api
-      .post("/product/search", filters)
+      .post("/product/search", pickBy(filters))
       .then(response => {
         const products = response.data.map(product => ({
           ...product,
@@ -158,7 +158,6 @@ export function fetchByFilters(filters) {
       })
       .catch(error => {
         apiErrorToast(error);
-        return dispatch(setLoading(false));
       });
   };
 }

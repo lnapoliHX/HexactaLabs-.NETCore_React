@@ -17,6 +17,11 @@ export class ProductsPage extends Component {
     };
   }
 
+  submitFilter = event => {
+    event.preventDefault();
+    this.props.fetchByFilters(this.state.filters);
+  };
+
   filterChanged = event => {
     const newFilters = {
       ...this.state.filters,
@@ -32,7 +37,7 @@ export class ProductsPage extends Component {
         defaultPageSize={5}
         filters={this.state.filters}
         handleFilter={this.filterChanged}
-        submitFilter={() => this.props.fetchByFilters(this.state.filters)}
+        submitFilter={this.submitFilter}
         clearFilter={this.props.fetchAll}
         dataLoading={this.props.loading}
         {...this.props}
