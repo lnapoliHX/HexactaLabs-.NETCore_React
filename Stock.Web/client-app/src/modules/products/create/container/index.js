@@ -7,7 +7,7 @@ import { goBack } from "connected-react-router";
 import Form from "../../form/presentation";
 import { create } from "../../create";
 import { getProductTypes } from "../../list";
-import { getProviders, getProviderIds } from "../../../providers/list";
+import { getProviders } from "../../../providers/list";
 
 const Create = ({
   create: onSubmit,
@@ -21,7 +21,7 @@ const Create = ({
       <Row>
         <h2>Nuevo Producto</h2>
       </Row>
-      {productTypeOptions.length === 0 ? (
+      {!productTypeOptions.length ? (
         <Row>
           <Col>
             <Alert color="warning">
@@ -32,7 +32,7 @@ const Create = ({
           </Col>
         </Row>
       ) : null}
-      {providerOptions.length === 0 ? (
+      {!providerOptions.length ? (
         <Row>
           <Col>
             <Alert color="warning">
@@ -65,20 +65,24 @@ Create.propTypes = {
   initialValues: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({
-  productTypeOptions: getProductTypes(state).map(pt => ({
-    label: pt.initials,
-    value: pt.id
-  })),
-  providerOptions: getProviders(state).map(provider => ({
-    label: provider.name,
-    value: provider.id
-  })),
-  initialValues: {
-    productTypeId: getProductTypes(state)[0].id || "default",
-    providerId: getProviderIds(state)[0] || "default"
-  }
-});
+const mapStateToProps = state => {
+  const productTypes = getProductTypes(state);
+  const providers = getProviders(state);
+  return {
+    productTypeOptions: productTypes.map(pt => ({
+      label: pt.initials,
+      value: pt.id
+    })),
+    providerOptions: providers.map(provider => ({
+      label: provider.name,
+      value: provider.id
+    })),
+    initialValues: {
+      productTypeId: productTypes.length ? productTypes[0].id : "default",
+      providerId: providers.length ? providers[0].id : "default"
+    }
+  };
+};
 
 const mapDispatchToProps = {
   create,

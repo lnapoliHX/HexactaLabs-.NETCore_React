@@ -1,4 +1,4 @@
-import { cloneDeep, pickBy } from "lodash";
+import { cloneDeep } from "lodash";
 import api from "../../../common/api";
 import { apiErrorToast } from "../../../common/api/apiErrorToast";
 import { normalize } from "../../../common/helpers/normalizer";
@@ -8,10 +8,7 @@ const initialState = {
   loading: false,
   ids: [],
   byId: {},
-  types: [
-    { label: "Some Type", value: "1" },
-    { label: "Some Type 2", value: "2" }
-  ]
+  types: []
 };
 
 /* Action Types */
@@ -122,17 +119,18 @@ export function setProductTypes(types) {
   };
 }
 
-export function fetchAll(params = {}) {
+export function fetchAll() {
   return function(dispatch) {
     dispatch(setLoading(true));
-    let productsPromise = api.get("/product", { params: pickBy(params) });
-    let productTypesPromise = api.get("/producttype");
-    let providersPromise = api.get("/provider", { params: pickBy(params) });
-    return Promise.all([productsPromise, productTypesPromise, providersPromise])
-      .then(response => {
-        dispatch(setProducts(response[0].data));
-        dispatch(setProductTypes(response[1].data));
-        dispatch(setProviders(response[2].data));
+    return Promise.all([
+      api.get("/product"),
+      api.get("/producttype"),
+      api.get("/provider")
+    ])
+      .then(([products, types, providers]) => {
+        dispatch(setProducts(products.data));
+        dispatch(setProductTypes(types.data));
+        dispatch(setProviders(providers.data));
         dispatch(setLoading(false));
       })
       .catch(error => {
@@ -144,6 +142,25 @@ export function fetchAll(params = {}) {
 
 export function fetchById(id) {
   return fetchAll({ id });
+}
+
+export function fetchByFilters(filters) {
+  return function(dispatch) {
+    return api
+      .post("/product/search", filters)
+      .then(response => {
+        const products = response.data.map(product => ({
+          ...product,
+          productTypeId: product.productType.id,
+          productTypeDesc: product.productType.description
+        }));
+        dispatch(setProducts(products));
+      })
+      .catch(error => {
+        apiErrorToast(error);
+        return dispatch(setLoading(false));
+      });
+  };
 }
 
 export function fetchAllTypes() {
