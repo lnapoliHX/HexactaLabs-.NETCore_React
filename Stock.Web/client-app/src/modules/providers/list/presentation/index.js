@@ -20,6 +20,7 @@ const Presentation = props => {
           <Search
             handleFilter={props.handleFilter}
             submitFilter={props.submitFilter}
+            clearFilter={props.clearFilter}
             filters={props.filters}
           />
         </Col>
@@ -59,6 +60,7 @@ Presentation.propTypes = {
   defaultPageSize: PropTypes.number,
   handleFilter: PropTypes.func.isRequired,
   submitFilter: PropTypes.func.isRequired,
+  clearFilter: PropTypes.func.isRequired,
   urls: PropTypes.shape({ create: PropTypes.string }),
   push: PropTypes.func.isRequired
 };

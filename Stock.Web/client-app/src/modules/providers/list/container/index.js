@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import PropTypes from "prop-types";
-import { getProviders, getAll } from "../index";
+import { getProviders, getAll, fetchByFilters } from "../index";
 import Presentation from "../presentation";
 
 class ProvidersPage extends React.Component {
@@ -10,18 +10,12 @@ class ProvidersPage extends React.Component {
     super();
     this.state = {
       filters: {
-        id: "",
         name: "",
         email: "",
-        phone: ""
+        condition: "AND"
       }
     };
   }
-
-  submitFilters = event => {
-    event.preventDefault();
-    this.props.getAll(this.state.filters);
-  };
 
   filterChanged = event => {
     const newFilters = {
@@ -39,7 +33,8 @@ class ProvidersPage extends React.Component {
         defaultPageSize={5}
         filters={this.state.filters}
         handleFilter={this.filterChanged}
-        submitFilter={this.submitFilters}
+        submitFilter={() => this.props.fetchByFilters(this.state.filters)}
+        clearFilter={this.props.getAll}
         {...this.props}
       />
     );
@@ -57,7 +52,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   getAll,
-  push
+  push,
+  fetchByFilters
 };
 
 export default connect(
