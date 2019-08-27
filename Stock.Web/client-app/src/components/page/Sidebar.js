@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Nav, NavItem, Col } from "reactstrap";
 import { NavLink as Link } from "react-router-dom";
+import "./Sidebar.css";
 
 const Sidebar = ({ menu }) => (
-  <Col sm={1}>
-    <hr />
-    <p>Navegación</p>
-    <Nav vertical>
+  <Col className="ui-sidebar"  sm={2}>    
+    <h4 className="ui-sidebar-section-title">Navegación</h4>
+    <Nav className="ui-sidebar-section-nav" vertical>
       {menu.map(({ to, icon, title }, i) => (
         <NavItem
           key={i}
@@ -19,8 +19,7 @@ const Sidebar = ({ menu }) => (
           )}
         />
       ))}
-    </Nav>
-    <hr />
+    </Nav>    
   </Col>
 );
 
