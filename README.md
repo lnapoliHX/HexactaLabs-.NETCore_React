@@ -2,6 +2,8 @@
 
 Hexacta 2019
 
+## [Documentación](./Docs/index.md)
+
 ## Front end
 
 Para correr la app, solo hace falta estar situado en la carpeta `Stock.Web/client-app` y ejecutar `npm start` en la consola.
