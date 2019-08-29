@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import Products from "../presentation/Products";
-import { getProducts, fetchAll } from "../index";
+import { getProducts, fetchByFilters, fetchAll } from "../index";
 import { getProvidersById } from "../../../providers/list";
 
 export class ProductsPage extends Component {
@@ -10,24 +10,16 @@ export class ProductsPage extends Component {
     super();
     this.state = {
       filters: {
-        id: "",
-        name: "",
-        type: "",
-        brand: "",
-        providers: []
-      },
-      data: []
+        Name: "",
+        Brand: "",
+        Condition: "AND"
+      }
     };
   }
 
-  componentDidMount() {
-    this.tableData();
-    this.providersFilter();
-  }
-
-  submitFilters = event => {
+  submitFilter = event => {
     event.preventDefault();
-    this.props.fetchAll(this.state.filters);
+    this.props.fetchByFilters(this.state.filters);
   };
 
   filterChanged = event => {
@@ -38,37 +30,15 @@ export class ProductsPage extends Component {
     this.setState({ filters: newFilters });
   };
 
-  tableData = () => {
-    const productsExpanded = this.props.products.map(product => ({
-      ...product,
-      providerName:
-        product.providerId !== null
-          ? this.props.providers[product.providerId].name
-          : ""
-    }));
-    this.setState({
-      data: productsExpanded
-    });
-  };
-
-  providersFilter = () => {
-    const providers = Object.values(this.props.providers).map(provider => ({
-      label: provider.name,
-      value: provider.id
-    }));
-    this.setState({
-      filters: { ...this.state.filters, providers }
-    });
-  };
-
   render() {
     return (
       <Products
-        data={this.state.data}
+        data={this.props.products}
         defaultPageSize={5}
         filters={this.state.filters}
         handleFilter={this.filterChanged}
-        submitFilter={this.submitFilters}
+        submitFilter={this.submitFilter}
+        clearFilter={this.props.fetchAll}
         dataLoading={this.props.loading}
         {...this.props}
       />
@@ -77,13 +47,20 @@ export class ProductsPage extends Component {
 }
 
 const mapStateToProps = state => {
+  const providersById = getProvidersById(state);
   return {
-    products: getProducts(state),
-    providers: getProvidersById(state)
+    products: getProducts(state).map(product => ({
+      ...product,
+      providerName: product.providerId
+        ? providersById[product.providerId].name
+        : ""
+    })),
+    providers: providersById
   };
 };
 
 const mapDispatchToProps = {
+  fetchByFilters,
   fetchAll,
   push
 };
