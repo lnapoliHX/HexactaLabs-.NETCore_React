@@ -15,7 +15,7 @@ namespace Stock.Model.Entities
 
         public decimal SalePrice { get; set; }
 
-        public virtual ProductType ProductType { get; set; }
+        public virtual string ProductTypeId { get; set; }
 
         private int _stock;
 

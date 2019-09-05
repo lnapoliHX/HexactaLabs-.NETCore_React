@@ -37,7 +37,13 @@ namespace Stock.Api.Controllers
             try
             {
                 var result = this.service.GetAll();
-                return this.mapper.Map<IEnumerable<ProductDTO>>(result).ToList();
+                var resultDto = this.mapper.Map<IEnumerable<ProductDTO>>(result).ToList();
+                foreach (var item in resultDto)
+                {
+                    AssignProductTypetoProduct(item);
+                }
+
+                return resultDto;
             }
             catch(Exception)
             {
@@ -53,7 +59,10 @@ namespace Stock.Api.Controllers
         [HttpGet("{id}")]
         public ActionResult<ProductDTO> Get(string id)
         {
-            return this.mapper.Map<ProductDTO>(this.service.Get(id));
+            var resultDto = this.mapper.Map<ProductDTO>(this.service.Get(id));
+            AssignProductTypetoProduct(resultDto);
+
+            return resultDto;
         }
 
         /// <summary>
@@ -65,8 +74,12 @@ namespace Stock.Api.Controllers
         {
             TryValidateModel(value);
             var product = this.mapper.Map<Product>(value);
-            product.ProductType = this.productTypeService.Get(value.ProductTypeId.ToString());
-            return this.mapper.Map<ProductDTO>(this.service.Create(product));
+            //product.ProductType = this.productTypeService.Get(value.ProductTypeId.ToString());
+            var result = this.service.Create(product);
+            var resultDto = this.mapper.Map<ProductDTO>(this.service.Create(product));
+            AssignProductTypetoProduct(resultDto);          
+            
+            return resultDto;
         }
 
         /// <summary>
@@ -80,7 +93,7 @@ namespace Stock.Api.Controllers
             var product = this.service.Get(id);
             TryValidateModel(value);
             this.mapper.Map<ProductDTO, Product>(value, product);
-            product.ProductType = this.productTypeService.Get(value.ProductTypeId.ToString());
+           // product.ProductType = this.productTypeService.Get(value.ProductTypeId.ToString());
             this.service.Update(product);
         }
 
@@ -99,12 +112,20 @@ namespace Stock.Api.Controllers
             if(!string.IsNullOrWhiteSpace(model.Brand))
             {
                 filter = filter.AndOrCustom(
-                    x => x.ProductType.Description.ToUpper().Contains(model.Brand.ToUpper()),
+                    x => x.ProductTypeId.ToUpper().Equals(model.Brand.ToUpper()),
                     model.Condition.Equals(ActionDto.AND));
             }
 
             var products = this.service.Search(filter);
-            return Ok(products);
+
+            var resultDto = this.mapper.Map<IEnumerable<ProductDTO>>(products).ToList(); 
+
+            foreach (var item in resultDto)
+            {
+                AssignProductTypetoProduct(item);
+            }
+
+            return Ok(resultDto);
         }
 
         /// <summary>
@@ -171,6 +192,17 @@ namespace Stock.Api.Controllers
         public ActionResult<GenericResultDTO<decimal>> ObtenerPrecioVentaEmpleado(string id)
         {
             return new GenericResultDTO<decimal>(this.service.ObtenerPrecioVentaEmpleado(id));
+        }
+
+        private void AssignProductTypetoProduct(ProductDTO dtoItem)
+        {
+             if (!string.IsNullOrWhiteSpace(dtoItem.ProductTypeId))
+            {
+                var productType = this.productTypeService.Get(dtoItem.ProductTypeId);
+                dtoItem.ProductTypeId = productType.Id;
+                dtoItem.ProductTypeDesc = productType.Description;
+                dtoItem.ProcutTypeinitials = productType.Initials;
+            }   
         }
     }
 }

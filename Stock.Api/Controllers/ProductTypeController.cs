@@ -83,7 +83,7 @@ namespace Stock.Api.Controllers
         {
             var productType = this.service.Get(id);
 
-             Expression<Func<Product, bool>> filter = x => x.ProductType.Id.Equals(id);
+             Expression<Func<Product, bool>> filter = x => x.ProductTypeId.Equals(id);
 
             var products = this.productService.Search(filter);
 
