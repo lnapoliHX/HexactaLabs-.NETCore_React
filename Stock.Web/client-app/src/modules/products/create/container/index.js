@@ -70,7 +70,7 @@ const mapStateToProps = state => {
   const providers = getProviders(state);
   return {
     productTypeOptions: productTypes.map(pt => ({
-      label: pt.initials,
+      label: pt.description,
       value: pt.id
     })),
     providerOptions: providers.map(provider => ({
