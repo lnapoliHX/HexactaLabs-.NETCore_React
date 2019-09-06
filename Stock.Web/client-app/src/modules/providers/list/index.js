@@ -101,11 +101,11 @@ export function setProviders(providers) {
   };
 }
 
-export function getAll(params = {}) {
+export function getAll() {
   return dispatch => {
     dispatch(setLoading(true));
     return api
-      .get("/provider", { params: pickBy(params) })
+      .get("/provider")
       .then(response => {
         dispatch(setProviders(response.data));
         return dispatch(setLoading(false));
@@ -119,6 +119,19 @@ export function getAll(params = {}) {
 
 export function getById(id) {
   return getAll({ id });
+}
+
+export function fetchByFilters(filters) {
+  return function(dispatch) {
+    return api
+      .post("/provider/search", pickBy(filters))
+      .then(response => {
+        dispatch(setProviders(response.data));
+      })
+      .catch(error => {
+        apiErrorToast(error);
+      });
+  };
 }
 
 /* Selectors */

@@ -48,26 +48,19 @@ HeaderComponent.displayName = "HeaderComponent";
 
 const columns = [
   {
-    Header: <HeaderComponent title="ID" />,
-    accessor: "id",
-    Cell: props => props.value
-  },
-  {
     Header: <HeaderComponent title="Nombre" />,
     accessor: "name",
     Cell: props => props.value
   },
   {
-    Header: <HeaderComponent title="Tipo" />,
+    Header: <HeaderComponent title="Marca" />,
     accessor: "productTypeDesc",
     Cell: props => props.value
   },
   {
     Header: <HeaderComponent title="Proovedor" />,
     accessor: "providerName",
-    Cell: props => {
-      return props.value;
-    }
+    Cell: props => props.value
   },
   {
     Header: <HeaderComponent title="Acciones" />,
