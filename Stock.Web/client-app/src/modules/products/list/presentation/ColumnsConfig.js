@@ -54,7 +54,7 @@ const columns = [
   },
   {
     Header: <HeaderComponent title="Marca" />,
-    accessor: "productTypeDesc",
+    accessor: "category",
     Cell: props => props.value
   },
   {

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { goBack } from "connected-react-router";
 import Form from "../../form/presentation";
 import { create } from "../../create";
-import { getProductTypes } from "../../list";
+import { getProductTypes } from "../../../productType/list";
 import { getProviders } from "../../../providers/list";
 
 const Create = ({
