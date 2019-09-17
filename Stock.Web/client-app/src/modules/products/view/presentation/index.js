@@ -3,7 +3,6 @@ import { Container, Row, Col, Button } from "reactstrap";
 import PropTypes from "prop-types";
 
 const ProductView = props => {
-  console.log(props);
   return (
     <Container fluid>
       <h1>{props.product.name}</h1>
