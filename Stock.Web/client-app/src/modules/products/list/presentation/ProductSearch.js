@@ -30,7 +30,7 @@ const Search = props => {
                 type="text"
                 onChange={props.handleFilter}
                 value={props.filters.Brand}
-                placeholder="Marca"
+                placeholder="Tipo de producto"
               />
             </FormGroup>
           </Col>

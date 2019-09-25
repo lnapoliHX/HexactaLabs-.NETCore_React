@@ -5,8 +5,9 @@ import { Container, Row, Col } from "reactstrap";
 import { goBack } from "connected-react-router";
 import Form from "../../form/presentation";
 import { update } from "..";
-import { getProductTypes, getProductById } from "../../list";
+import { getProductById } from "../../list";
 import { getProviders } from "../../../providers/list";
+import { getProductTypes } from "../../../productType/list";
 
 const Update = ({
   initialValues,
