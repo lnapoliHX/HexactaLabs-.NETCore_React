@@ -1,25 +1,24 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { FaEdit, FaTrash, FaSearch } from "react-icons/fa";
 
-import PropTypes from "prop-types";
-
 const renderToolbar = ({ value }) => {
   let viewButton = (
-    <Link className="provider-list__button" to={`/provider/view/${value}`}>
-      <FaSearch className="provider-list__button-icon" />
+    <Link className="store-list__button" to={`/store/view/${value}`}>
+      <FaSearch className="store-list__button-icon" />
     </Link>
   );
 
   let editButton = (
-    <Link className="provider-list__button" to={`/provider/update/${value}`}>
-      <FaEdit className="provider-list__button-icon" />
+    <Link className="store-list__button" to={`/store/update/${value}`}>
+      <FaEdit className="store-list__button-icon" />
     </Link>
   );
 
   let removeButton = (
-    <Link className="provider-list__button" to={`/provider/remove/${value}`}>
-      <FaTrash className="provider-list__button-icon" />
+    <Link className="store-list__button" to={`/store/remove/${value}`}>
+      <FaTrash className="store-list__button-icon" />
     </Link>
   );
 
@@ -52,8 +51,8 @@ const columns = [
     Cell: props => props.value
   },
   {
-    Header: <HeaderComponent title="Email" />,
-    accessor: "email",
+    Header: <HeaderComponent title="Direccion" />,
+    accessor: "address",
     Cell: props => props.value
   },
   {

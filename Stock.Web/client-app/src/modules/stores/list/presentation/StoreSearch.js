@@ -1,8 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Row, Col, Input, Button } from "reactstrap";
 import { MdSearch, MdCancel } from "react-icons/md";
-
-import PropTypes from "prop-types";
 
 const Search = props => {
   return (
@@ -21,12 +20,12 @@ const Search = props => {
         </Col>
         <Col>
           <Input
-            name="email"
-            id="emailInput"
+            name="address"
+            id="addressInput"
             type="text"
             onChange={props.handleFilter}
-            value={props.filters.email}
-            placeholder="Email"
+            value={props.filters.address}
+            placeholder="Dirección"
           />
         </Col>
         <Col>
