@@ -2,45 +2,41 @@ import React from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import PropTypes from "prop-types";
 
-const ProviderView = props => {
+const StoreView = props => {
   return (
     <Container fluid>
-      <h1>{props.provider.name}</h1>
+      <h1>{props.store.name}</h1>
       <Row>
-        <Col lg="2">Id</Col>
-        <Col>{props.provider.id}</Col>
-      </Row>
-      <Row>
-        <Col lg="2">Email</Col>
-        <Col>{props.provider.email}</Col>
+        <Col lg="2">Dirección</Col>
+        <Col>{props.store.address}</Col>
       </Row>
       <Row>
         <Col lg="2">Teléfono</Col>
-        <Col>{props.provider.phone}</Col>
+        <Col>{props.store.phone}</Col>
       </Row>
-      <div className="provider-view__button-row">
+      <div className="store-view__button-row">
         <Button
-          className="provider-form__button"
+          className="store-form__button"
           color="primary"
           onClick={() =>
-            props.push(`/provider/update/${props.match.params.id}`)
+            props.push(`/store/update/${props.match.params.id}`)
           }
         >
           Editar
         </Button>
         <Button
-          className="provider-form__button"
+          className="store-form__button"
           color="danger"
           onClick={() =>
-            props.push(`/provider/view/${props.match.params.id}/remove`)
+            props.push(`/store/view/${props.match.params.id}/remove`)
           }
         >
           Eliminar
         </Button>
         <Button
-          className="provider-form__button"
+          className="store-form__button"
           color="default"
-          onClick={() => props.push(`/provider`)}
+          onClick={() => props.push(`/store`)}
         >
           Volver
         </Button>
@@ -49,10 +45,10 @@ const ProviderView = props => {
   );
 };
 
-ProviderView.propTypes = {
-  provider: PropTypes.object.isRequired,
+StoreView.propTypes = {
+  store: PropTypes.object.isRequired,
   push: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired
 };
 
-export default ProviderView;
+export default StoreView;
