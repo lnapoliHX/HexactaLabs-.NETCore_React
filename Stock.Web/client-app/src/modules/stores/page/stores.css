@@ -1,18 +1,18 @@
-.provider__button {
+.store__button {
   font-size: 1em;
 }
 
-.provider__button-icon {
+.store__button-icon {
   font-size: 0.8em;
   margin-right: 4px;
 }
 
-.provider-form__button,
-.provider-list__button {
+.store-form__button,
+.store-list__button {
   margin: 0 2px 0;
 }
 
-.provider-list__button {
+.store-list__button {
   display: inline-block;
   padding: 0 5px 0;
   border: 1px solid transparent;
@@ -21,15 +21,15 @@
   color: white;
 }
 
-.provider-list__button:hover {
+.store-list__button:hover {
   color: white;
   background-color: #0069d9;
 }
 
-.provider-list__button-icon {
+.store-list__button-icon {
   margin-top: -4px;
 }
 
-.provider-view__button-row {
+.store-view__button-row {
   float: right;
 }
