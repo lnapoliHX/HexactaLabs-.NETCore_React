@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { goBack } from "connected-react-router";
 import PropTypes from "prop-types";
-import { getProviderById } from "../../list";
+import { getStoreById } from "../../list";
 import { update } from "..";
 import Form from "../../form/presentation";
 import { Container, Row, Col } from "reactstrap";
@@ -33,7 +33,7 @@ Update.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  initialValues: getProviderById(state, ownProps.match.params.id)
+  initialValues: getStoreById(state, ownProps.match.params.id)
 });
 
 const mapDispatchToProps = {

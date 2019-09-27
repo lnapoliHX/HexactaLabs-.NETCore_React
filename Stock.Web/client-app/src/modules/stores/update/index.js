@@ -5,21 +5,21 @@ import { toast } from "react-toastify";
 import { goBack } from "connected-react-router";
 
 /* Actions */
-function success(provider) {
+function success(store) {
   return {
     type: ActionTypes.UPDATE,
-    provider
+    store
   };
 }
 
-export function update(provider) {
-  return function(dispatch) {
+export function update(store) {
+  return function (dispatch) {
     dispatch(setLoading(true));
     return api
-      .put(`/provider/${provider.id}`, provider)
+      .put(`/store/${store.id}`, store)
       .then(() => {
-        toast.success("El proveedor se editó con éxito");
-        dispatch(success(provider));
+        toast.success("La tienda se editó con éxito");
+        dispatch(success(store));
         dispatch(setLoading(false));
         return dispatch(goBack());
       })
