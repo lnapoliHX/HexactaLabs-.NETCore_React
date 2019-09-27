@@ -33,3 +33,245 @@
 .provider-view__button-row {
   float: right;
 }
+
+/*****************************************/
+/*************** Generales ***************/
+/*****************************************/
+.form-control {
+	border-radius: 0;
+	border: 0;
+	border-bottom: 1px solid #cec4ca;
+}
+
+
+.block-header {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.block-header h1,
+.block-header h2 {
+    font-size: 18px;
+    color: #777;
+    margin: 0;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.block-header h2{
+    font-size: 15px;
+}
+
+@media screen and (min-width: 768px){
+    .block-header {
+        padding: 22px 0 0 0;
+    }
+}
+
+
+/* busqueda proovedores */
+.busquedaProveedores {
+	margin: 0 0 25px 0;	
+	background: #fff;
+	border: 1px solid #F0F0F0;
+}
+
+.busquedaProveedores h4{
+	font-size: 15px;
+    color: #777;
+    margin: 0;
+    font-weight: 400;
+	text-transform: uppercase;
+	border-bottom: 1px solid #F0F0F0;
+	padding: 10px 5px;
+	text-align: center;
+}
+
+.busquedaProveedores .flex-container {
+	display: flex;
+	padding: 10px 5px;
+}
+
+.busquedaProveedores .flex-container > div{
+	flex: 1 1 33.33%;
+    padding: 0 10px;
+}
+
+.busquedaProveedores .flex-container > div.lastCol {
+	flex: 0 1 auto;
+}
+
+
+
+.busquedaProveedores .flex-container .clearButton,
+.busquedaProveedores .flex-container .searchButton {
+	padding: 0;
+	width: 38px;
+	height: 38px;
+	color: #009688;
+	border-radius: 50%;
+	border-color: transparent;
+	background: transparent;
+}
+
+.busquedaProveedores .flex-container .clearButton:hover,
+.busquedaProveedores .flex-container .searchButton:hover {
+	border-color: #009688;
+}
+
+.busquedaProveedores .form-control:focus {
+	box-shadow: none;
+}
+
+.busquedaProveedores .form-control:focus-visible {
+	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.busquedaProveedores .flex-container .clearButton svg,
+.busquedaProveedores .flex-container .searchButton svg {
+	width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+}
+
+
+/* Provider button */
+.agregarALaLista .provider__button {
+	padding: 0;
+	width: 38px;
+	height: 38px;
+	color: #009688;
+	border-radius: 50%;
+	border-color: transparent;
+	background: transparent;
+}
+
+.agregarALaLista .provider__button .provider__button-icon {
+	margin: 0;
+	width: 1.7em;
+	height: 1.7em;
+    vertical-align: middle;
+}
+
+/* Tabla proovedores */
+.ReactTable {
+    font-family: 'Roboto', sans-serif;
+    border: 0;
+}
+
+.ReactTable .rt-table{
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.ReactTable .tableHeading {
+	margin: 0;
+    line-height: 100%;
+    font-size: 17px;
+	font-weight: 400;
+	font-size: 17px;
+}
+
+.ReactTable .rt-thead .rt-th {
+	padding: 23px 25px;
+	font-weight: 700
+}
+
+.ReactTable .rt-thead.-header  {
+    box-shadow: none;
+    background: #fff;
+}
+
+.ReactTable.-striped .rt-tr.-odd {
+	background: #fff;
+}
+
+.ReactTable.-striped .rt-tr.-even{
+	background: #f4f4f4
+}
+
+.ReactTable .rt-tbody .rt-td {
+	padding: 20px;
+	font-size: 13px;
+}
+
+.ReactTable .rt-tbody .rt-td:last-child{
+    justify-content: center;
+    display: flex;
+}
+
+.ReactTable .rt-tbody .rt-td .provider-list__button {
+    background: none;
+    color: #009688;
+    padding: 0;
+    border-radius: 0;
+    width: 15px;
+    height:15px;
+    margin: 0 15px;
+}
+
+.ReactTable .rt-tbody .rt-td .provider-list__button svg {
+    width: inherit;
+    height: inherit;
+}
+
+/* pagination */
+.ReactTable .pagination-bottom .-pagination {
+    border: 0;
+    margin-top: 15px;
+    box-shadow: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.ReactTable .-pagination .-center,
+.ReactTable .-pagination .-previous, 
+.ReactTable .-pagination .-next {
+    flex: 0 1 auto;
+}
+
+.ReactTable .-pagination .-btn {
+    border-radius: 50%;
+    font-size: 0;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ffffff;
+    position: relative;
+    cursor: pointer;
+}
+
+.ReactTable .-pagination .-previous .-btn:before,
+.ReactTable .-pagination .-next .-btn:before {
+    content:"«";
+    font-size: 16px;
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.ReactTable .-pagination .-next .-btn:before {
+    content:"›";
+}
+
+.ReactTable .rt-noData {
+    padding: 17px;
+}
+
+.ReactTable .-pagination input, 
+.ReactTable .-pagination select {
+    border: 1px solid #e0e0e0;
+    padding: 5px;
+    font-size: 13px;
+}
+
+.ReactTable .-pagination .-pageInfo {
+    font-size: 13px;
+}
+
+.ReactTable .-pagination .-pageJump input {
+    text-align: left;
+}
+
+
+/* Temporales */
+body {
+	background-color: #edecec;
+}
