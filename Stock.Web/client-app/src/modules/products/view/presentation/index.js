@@ -7,10 +7,6 @@ const ProductView = props => {
     <Container fluid>
       <h1>{props.product.name}</h1>
       <Row>
-        <Col lg="2">Id</Col>
-        <Col>{props.product.id}</Col>
-      </Row>
-      <Row>
         <Col lg="2">Precio al costo</Col>
         <Col>{props.product.costPrice}</Col>
       </Row>
@@ -21,19 +17,15 @@ const ProductView = props => {
       <br />
       <h4>Tipo de producto</h4>
       <Row>
-        <Col lg="2">Id</Col>
-        <Col>{props.product.productTypeId}</Col>
+        <Col lg="2">Iniciales</Col>
+        <Col>{props.productType.initials}</Col>
       </Row>
       <Row>
         <Col lg="2">Descripción</Col>
-        <Col>{props.product.productTypeDesc}</Col>
+        <Col>{props.productType.description}</Col>
       </Row>
       <br />
       <h4>Proveedor</h4>
-      <Row>
-        <Col lg="2">Id</Col>
-        <Col>{props.provider.id}</Col>
-      </Row>
       <Row>
         <Col lg="2">Nombre</Col>
         <Col>{props.provider.name}</Col>

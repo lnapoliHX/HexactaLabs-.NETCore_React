@@ -3,18 +3,17 @@ import api from "../../../common/api";
 import { apiErrorToast } from "../../../common/api/apiErrorToast";
 import { normalize } from "../../../common/helpers/normalizer";
 import { setProviders } from "../../providers/list";
+import { setProductTypes } from "../../productType/list";
 
 const initialState = {
   loading: false,
   ids: [],
-  byId: {},
-  types: []
+  byId: {}
 };
 
 /* Action Types */
 const LOADING = "PRODUCTS_LOADING";
 const SET = "PRODUCTS_SET";
-const SET_TYPES = "PRODUCTS_TYPES_SET";
 const CREATE = "PRODUCTS_CREATE";
 const UPDATE = "PRODUCTS_UPDATE";
 const REMOVE = "PRODUCTS_REMOVE";
@@ -22,7 +21,6 @@ const REMOVE = "PRODUCTS_REMOVE";
 export const ActionTypes = {
   LOADING,
   SET,
-  SET_TYPES,
   CREATE,
   UPDATE,
   REMOVE
@@ -44,12 +42,6 @@ function handleSet(state, { products }) {
   };
 }
 
-function handleSetTypes(state, { types }) {
-  return {
-    ...state,
-    types
-  };
-}
 
 function handleNewProduct(state, { product }) {
   return {
@@ -86,7 +78,6 @@ function handleRemoveProduct(state, { id }) {
 const handlers = {
   [LOADING]: handleLoading,
   [SET]: handleSet,
-  [SET_TYPES]: handleSetTypes,
   [CREATE]: handleNewProduct,
   [UPDATE]: handleUpdateProduct,
   [REMOVE]: handleRemoveProduct
@@ -112,15 +103,9 @@ export function setProducts(products) {
   };
 }
 
-export function setProductTypes(types) {
-  return {
-    type: SET_TYPES,
-    types
-  };
-}
 
 export function fetchAll() {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch(setLoading(true));
     return Promise.all([
       api.get("/product"),
@@ -145,7 +130,7 @@ export function fetchById(id) {
 }
 
 export function fetchByFilters(filters) {
-  return function(dispatch) {
+  return function (dispatch) {
     return api
       .post("/product/search", pickBy(filters))
       .then(response => {
@@ -163,26 +148,10 @@ export function fetchByFilters(filters) {
 }
 
 export function fetchAllTypes() {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch(setLoading(true));
     return api
       .get("/producttype")
-      .then(response => {
-        dispatch(setProductTypes(response.data));
-        return dispatch(setLoading(false));
-      })
-      .catch(error => {
-        apiErrorToast(error);
-        return dispatch(setLoading(false));
-      });
-  };
-}
-
-export function fetchTypeById(id) {
-  return function(dispatch) {
-    dispatch(setLoading(true));
-    return api
-      .get(`/producttype/${id}`)
       .then(response => {
         dispatch(setProductTypes(response.data));
         return dispatch(setLoading(false));
@@ -230,6 +199,3 @@ export function makeGetProductsMemoized() {
 
 export const getProducts = makeGetProductsMemoized();
 
-export function getProductTypes(state) {
-  return base(state).types;
-}
