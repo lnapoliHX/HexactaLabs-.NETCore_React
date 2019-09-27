@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 const Search = props => {
   return (
     <React.Fragment>
-      <div className="busqueda busquedaProveedores">
+      <div className="busqueda">
       <h4>Búsqueda</h4>
       <div className="flex-container">
 			<div>

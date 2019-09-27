@@ -1,8 +1,10 @@
-.provider__button {
+.provider__button,
+.product__button {
   font-size: 1em;
 }
 
-.provider__button-icon {
+.provider__button-icon,
+.product__button-icon {
   font-size: 0.8em;
   margin-right: 4px;
 }
@@ -70,13 +72,13 @@
 
 
 /* busqueda proovedores */
-.busquedaProveedores {
+.busqueda {
 	margin: 0 0 25px 0;	
 	background: #fff;
 	border: 1px solid #F0F0F0;
 }
 
-.busquedaProveedores h4{
+.busqueda h4{
 	font-size: 15px;
     color: #777;
     margin: 0;
@@ -87,24 +89,24 @@
 	text-align: center;
 }
 
-.busquedaProveedores .flex-container {
+.busqueda .flex-container {
 	display: flex;
 	padding: 10px 5px;
 }
 
-.busquedaProveedores .flex-container > div{
+.busqueda .flex-container > div{
 	flex: 1 1 33.33%;
     padding: 0 10px;
 }
 
-.busquedaProveedores .flex-container > div.lastCol {
+.busqueda .flex-container > div.lastCol {
 	flex: 0 1 auto;
 }
 
 
 
-.busquedaProveedores .flex-container .clearButton,
-.busquedaProveedores .flex-container .searchButton {
+.busqueda .flex-container .clearButton,
+.busqueda .flex-container .searchButton {
 	padding: 0;
 	width: 38px;
 	height: 38px;
@@ -114,21 +116,21 @@
 	background: transparent;
 }
 
-.busquedaProveedores .flex-container .clearButton:hover,
-.busquedaProveedores .flex-container .searchButton:hover {
+.busqueda .flex-container .clearButton:hover,
+.busqueda .flex-container .searchButton:hover {
 	border-color: #009688;
 }
 
-.busquedaProveedores .form-control:focus {
+.busqueda .form-control:focus {
 	box-shadow: none;
 }
 
-.busquedaProveedores .form-control:focus-visible {
+.busqueda .form-control:focus-visible {
 	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-.busquedaProveedores .flex-container .clearButton svg,
-.busquedaProveedores .flex-container .searchButton svg {
+.busqueda .flex-container .clearButton svg,
+.busqueda .flex-container .searchButton svg {
 	width: 1.5em;
     height: 1.5em;
     vertical-align: middle;
@@ -136,7 +138,7 @@
 
 
 /* Provider button */
-.agregarALaLista .provider__button {
+.agregarALaLista .btn {
 	padding: 0;
 	width: 38px;
 	height: 38px;
@@ -146,7 +148,7 @@
 	background: transparent;
 }
 
-.agregarALaLista .provider__button .provider__button-icon {
+.agregarALaLista .btn svg {
 	margin: 0;
 	width: 1.7em;
 	height: 1.7em;
