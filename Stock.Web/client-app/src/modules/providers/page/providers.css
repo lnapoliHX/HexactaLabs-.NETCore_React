@@ -10,11 +10,13 @@
 }
 
 .provider-form__button,
-.provider-list__button {
+.provider-list__button,
+.product-list__button {
   margin: 0 2px 0;
 }
 
-.provider-list__button {
+.provider-list__button,
+.product-list__button {
   display: inline-block;
   padding: 0 5px 0;
   border: 1px solid transparent;
@@ -23,12 +25,14 @@
   color: white;
 }
 
-.provider-list__button:hover {
+.provider-list__button:hover,
+.product-list__button:hover {
   color: white;
   background-color: #0069d9;
 }
 
-.provider-list__button-icon {
+.provider-list__button-icon,
+.product-list__button-icon {
   margin-top: -4px;
 }
 
@@ -201,7 +205,8 @@
     display: flex;
 }
 
-.ReactTable .rt-tbody .rt-td .provider-list__button {
+.ReactTable .rt-tbody .rt-td .provider-list__button,
+.ReactTable .rt-tbody .rt-td .product-list__button {
     background: none;
     color: #009688;
     padding: 0;
@@ -211,7 +216,8 @@
     margin: 0 15px;
 }
 
-.ReactTable .rt-tbody .rt-td .provider-list__button svg {
+.ReactTable .rt-tbody .rt-td .provider-list__button svg,
+.ReactTable .rt-tbody .rt-td .product-list__button svg {
     width: inherit;
     height: inherit;
 }
@@ -272,6 +278,32 @@
     text-align: left;
 }
 
+/* Caja Info */
+.info-box {
+    padding:0 15px;
+    background: #fff;
+    margin-bottom: 15px;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.info-box .row {
+    padding: 10px 0;
+    font-size: 13px;
+    font-family: "Segoe UI",sans-serif;
+    font-weight: 500;
+}
+
+.info-box .row:nth-child(even){
+    background: #f4f4f4;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+/* UI Sidebar */
+.ui-sidebar {
+    /* 100vh - alto del header verde */
+    height: calc(100vh - 56px);
+}
 
 /* Temporales */
 body {

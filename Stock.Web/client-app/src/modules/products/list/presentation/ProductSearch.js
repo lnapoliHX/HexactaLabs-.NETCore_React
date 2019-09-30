@@ -31,7 +31,7 @@ const Search = props => {
                         placeholder="Tipo de producto"
                     />
                 </div>
-                <div class="lastCol">
+                <div className="lastCol">
                     <Button color="primary" aria-label="Search" className="searchButton">
                         <MdSearch />
                     </Button>

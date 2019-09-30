@@ -12,7 +12,7 @@ const Presentation = props => {
     <Container fluid>
       <Row className="my-1">
         <Col>
-            <div class="block-header">
+            <div className="block-header">
                 <h1>Proveedores</h1>
           </div>
         </Col>
