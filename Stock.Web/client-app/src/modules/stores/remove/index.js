@@ -13,21 +13,21 @@ function success(id) {
 }
 
 export function remove(id) {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch(setLoading(true));
     return api
-      .delete(`/provider/${id}`)
+      .delete(`/store/${id}`)
       .then(response => {
         if (!response.data.success) {
           toast.error(response.data.message);
           dispatch(setLoading(false));
-          return dispatch(replace("/provider"));
+          return dispatch(replace("/store"));
         }
 
-        toast.success("Se eliminó el proveedor con éxito");
+        toast.success("Se eliminó la tienda con éxito");
         dispatch(success(id));
         dispatch(setLoading(false));
-        return dispatch(replace("/provider"));
+        return dispatch(replace("/store"));
       })
       .catch(error => {
         apiErrorToast(error);
