@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import StoreRemove from "../presentation";
 import { remove } from "../index";
 
-class ProviderRemovePage extends React.Component {
+class StoreRemovePage extends React.Component {
   render() {
     return (
       <StoreRemove
@@ -16,7 +16,7 @@ class ProviderRemovePage extends React.Component {
   }
 }
 
-ProviderRemovePage.propTypes = {
+StoreRemovePage.propTypes = {
   remove: PropTypes.func.isRequired,
   goBack: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired
@@ -27,4 +27,4 @@ const mapDispatchToProps = { remove, goBack };
 export default connect(
   null,
   mapDispatchToProps
-)(ProviderRemovePage);
+)(StoreRemovePage);
