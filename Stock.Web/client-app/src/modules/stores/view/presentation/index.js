@@ -1,6 +1,6 @@
 import React from "react";
-import { Container, Row, Col, Button } from "reactstrap";
 import PropTypes from "prop-types";
+import { Container, Row, Col, Button } from "reactstrap";
 
 const StoreView = props => {
   return (
@@ -18,9 +18,7 @@ const StoreView = props => {
         <Button
           className="store-form__button"
           color="primary"
-          onClick={() =>
-            props.push(`/store/update/${props.match.params.id}`)
-          }
+          onClick={() => props.push(`/store/update/${props.match.params.id}`)}
         >
           Editar
         </Button>

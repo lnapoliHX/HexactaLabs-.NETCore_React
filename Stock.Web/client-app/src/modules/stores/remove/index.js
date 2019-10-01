@@ -1,7 +1,7 @@
 import { replace } from "connected-react-router";
+import { toast } from "react-toastify";
 import { setLoading, ActionTypes } from "../list";
 import api from "../../../common/api";
-import { toast } from "react-toastify";
 import { apiErrorToast } from "../../../common/api/apiErrorToast";
 
 /* Actions */
@@ -13,7 +13,7 @@ function success(id) {
 }
 
 export function remove(id) {
-  return function (dispatch) {
+  return function(dispatch) {
     dispatch(setLoading(true));
     return api
       .delete(`/store/${id}`)

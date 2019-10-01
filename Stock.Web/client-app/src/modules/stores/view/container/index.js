@@ -1,11 +1,11 @@
 import React, { Component } from "react";
+import PropType from "prop-types";
+import { push } from "connected-react-router";
+import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { getStoreById } from "../../list/index";
 import Presentation from "../presentation";
 import Remove from "../../remove/container";
-import { push } from "connected-react-router";
-import { Route } from "react-router-dom";
-import PropType from "prop-types";
 
 export class StoreViewPage extends Component {
   render() {

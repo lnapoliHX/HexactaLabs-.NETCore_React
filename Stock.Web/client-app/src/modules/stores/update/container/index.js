@@ -1,11 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { goBack } from "connected-react-router";
-import PropTypes from "prop-types";
+import { Container, Row, Col } from "reactstrap";
 import { getStoreById } from "../../list";
 import { update } from "..";
 import Form from "../../form/presentation";
-import { Container, Row, Col } from "reactstrap";
 
 const Update = ({ initialValues, update: onSubmit, goBack: onCancel }) => {
   return (

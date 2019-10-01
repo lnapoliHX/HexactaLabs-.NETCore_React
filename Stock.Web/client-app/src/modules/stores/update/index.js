@@ -1,8 +1,8 @@
+import { toast } from "react-toastify";
+import { goBack } from "connected-react-router";
 import api from "../../../common/api";
 import { apiErrorToast } from "../../../common/api/apiErrorToast";
 import { setLoading, ActionTypes } from "../list";
-import { toast } from "react-toastify";
-import { goBack } from "connected-react-router";
 
 /* Actions */
 function success(store) {
@@ -13,7 +13,7 @@ function success(store) {
 }
 
 export function update(store) {
-  return function (dispatch) {
+  return function(dispatch) {
     dispatch(setLoading(true));
     return api
       .put(`/store/${store.id}`, store)
