@@ -4,6 +4,7 @@ import { push } from "connected-react-router";
 import Products from "../presentation/Products";
 import { getProducts, fetchByFilters, fetchAll } from "../index";
 import { getProvidersById } from "../../../providers/list";
+import { getById } from "../../../productType/list";
 
 export class ProductsPage extends Component {
   constructor() {
@@ -53,7 +54,8 @@ const mapStateToProps = state => {
       ...product,
       providerName: product.providerId
         ? providersById[product.providerId].name
-        : ""
+        : "",
+      category: getById(state, product.productTypeId).description
     })),
     providers: providersById
   };

@@ -15,7 +15,9 @@ namespace Stock.Repository.LiteDb.Configuration
             {
                 { typeof(Product), "product" },
                 { typeof(ProductType), "producttype" },
-                { typeof(Provider), "provider" }
+                { typeof(Provider), "provider" },
+                { typeof(Store), "store" },
+
             };
         }
 
