@@ -4,6 +4,8 @@ import { setLoading, ActionTypes } from "../list";
 import api from "../../../common/api";
 import { apiErrorToast } from "../../../common/api/apiErrorToast";
 
+const OK_STATUS = 200;
+
 /* Actions */
 function success(id) {
   return {
@@ -13,12 +15,12 @@ function success(id) {
 }
 
 export function remove(id) {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch(setLoading(true));
     return api
       .delete(`/store/${id}`)
       .then(response => {
-        if (!response.data.success) {
+        if (response.status !== OK_STATUS) {
           toast.error(response.data.message);
           dispatch(setLoading(false));
           return dispatch(replace("/store"));
@@ -26,8 +28,8 @@ export function remove(id) {
 
         toast.success("Se eliminó la tienda con éxito");
         dispatch(success(id));
-        dispatch(setLoading(false));
-        return dispatch(replace("/store"));
+        dispatch(replace("/store"));
+        return dispatch(setLoading(false));
       })
       .catch(error => {
         apiErrorToast(error);
