@@ -17,8 +17,8 @@ const Presentation = props => {
       <Row>
         <Col>
           <Search
-            handleFilter={props.handleFilter}
-            submitFilter={props.submitFilter}
+            handleFilter={props.onFilterChange}
+            submitFilter={props.onFilterSubmit}
             clearFilter={props.clearFilter}
             filters={props.filters}
           />
@@ -57,8 +57,8 @@ Presentation.propTypes = {
   filters: PropTypes.object.isRequired,
   dataLoading: PropTypes.bool.isRequired,
   defaultPageSize: PropTypes.number,
-  handleFilter: PropTypes.func.isRequired,
-  submitFilter: PropTypes.func.isRequired,
+  onFilterChange: PropTypes.func.isRequired,
+  onFilterSubmit: PropTypes.func.isRequired,
   clearFilter: PropTypes.func.isRequired,
   urls: PropTypes.shape({ create: PropTypes.string }),
   push: PropTypes.func.isRequired

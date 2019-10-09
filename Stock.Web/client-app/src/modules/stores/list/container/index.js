@@ -22,7 +22,7 @@ class StoresPage extends React.Component {
   };
 
   onFilterSubmit = () => {
-    this.props.fetchByFilters(this.state.filters);
+    this.props.fetchByFilters(this.state);
   };
 
   onFilterReset = () => {
