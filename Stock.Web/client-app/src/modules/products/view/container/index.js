@@ -7,6 +7,7 @@ import { push } from "connected-react-router";
 import { Route } from "react-router-dom";
 import PropType from "prop-types";
 import { getProviderById } from "../../../providers/list";
+import { getById } from "../../../productType/list";
 
 export class ProductsViewPage extends Component {
   render() {
@@ -27,7 +28,8 @@ const mapStateToProps = (state, ownProps) => {
   const product = getProductById(state, ownProps.match.params.id);
   return {
     product,
-    provider: getProviderById(state, product.providerId)
+    provider: getProviderById(state, product.providerId),
+    productType: getById(state, product.productTypeId)
   };
 };
 

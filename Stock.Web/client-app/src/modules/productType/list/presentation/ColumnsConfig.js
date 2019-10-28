@@ -33,25 +33,15 @@ const renderToolbar = ({ value }) => {
 
 const HeaderComponent = props => {
   return (
-    <div
-      style={{
-        textAlign: "left",
-        fontWeight: "bold"
-      }}
-    >
+    <h2 className="tableHeading">
       {props.title}
-    </div>
+    </h2>
   );
 };
 
 HeaderComponent.displayName = "HeaderComponent";
 
 const columns = [
-  {
-    Header: <HeaderComponent title="ID" />,
-    accessor: "id",
-    Cell: props => props.value
-  },
   {
     Header: <HeaderComponent title="Iniciales" />,
     accessor: "initials",

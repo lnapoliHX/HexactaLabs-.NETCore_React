@@ -11,7 +11,11 @@ const Update = ({ initialValues, update: onSubmit, goBack: onCancel }) => {
   return (
     <Container fluid>
       <Row>
-        <h2>Edición</h2>
+        <Col>
+            <div className="block-header">
+                <h1>Edición</h1>
+            </div>
+        </Col>
       </Row>
       <Row>
         <Col>
