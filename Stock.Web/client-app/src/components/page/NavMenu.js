@@ -39,15 +39,6 @@ export default class NavMenu extends React.Component {
                 <FaUserInjured />
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem header>Opciones</DropdownItem>
-                <DropdownItem
-                  tag={() => (
-                    <Link className="dropdown-item" to="/product">
-                      Editar
-                    </Link>
-                  )}
-                />
-                <DropdownItem divider />
                 <DropdownItem
                   tag={() => (
                     <Link className="dropdown-item" to="/logout">

@@ -107,8 +107,6 @@
 	flex: 0 1 auto;
 }
 
-
-
 .busqueda .flex-container .clearButton,
 .busqueda .flex-container .searchButton {
 	padding: 0;
@@ -303,6 +301,96 @@
 .ui-sidebar {
     /* 100vh - alto del header verde */
     height: calc(100vh - 56px);
+}
+
+/* Botones */
+.btn,
+.btn-default {
+    background:#007788;
+    border-color:#007788;
+}
+
+.btn-primary,
+.btn-primary:not(:disabled):not(.disabled):active, 
+.btn-primary:not(:disabled):not(.disabled).active {
+    background: #00AC9D;
+    border-color:#00AC9D;
+}
+
+.btn-secondary {
+    background: #14242C;
+    border-color:#14242C;
+}
+
+.btn-danger {
+    background: #CC3A67;
+    border-color:#CC3A67;
+}
+
+.btn:hover, .btn:focus,
+.btn-default:hover, .btn-default:focus {
+    background: #036270;
+    border-color: #036270;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background: #059084;
+    border-color:#059084;
+}
+
+.btn-danger:hover,
+.btn-danger:focus {
+    background: #b72f59;
+    border-color:#b72f59;
+}
+
+.btn svg,
+.btn-default svg,
+.btn-primary svg,
+.btn-secondary svg,
+.btn-danger svg {
+    fill: #fff;
+}
+
+.product__button svg{
+    fill: #059084;
+}
+
+.btn:hover svg, .btn:focus svg,
+.btn-primary:hover svg, .btn-primary:focus svg,
+.btn-default:hover, .btn-default:focus,
+.btn-danger:hover, .btn-danger:focus  {
+    fill: #fff;
+}
+
+.btn-outline-secondary:hover{
+
+}
+
+.btn.searchButton:hover,
+.btn.searchButton:focus,
+.btn.searchButton:active,
+.btn.clearButton:hover,
+.btn.clearButton:active,
+.btn.clearButton:focus {
+    border: 0;    
+}
+
+.clearButton:not(:disabled):not(.disabled):active,
+.clearButton:not(:disabled):not(.disabled).active, 
+.searchButton:not(:disabled):not(.disabled):active,
+.searchButton:not(:disabled):not(.disabled).active {
+    background: transparent;
+}
+
+.btn.searchButton:hover svg,
+.btn.searchButton:focus svg,
+.btn.searchButton:active svg,
+.btn.clearButton:hover svg,
+.btn.clearButton:active svg,
+.btn.clearButton:focus svg {
+    fill: #009688;
 }
 
 /* Temporales */
