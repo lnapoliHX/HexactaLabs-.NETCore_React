@@ -9,7 +9,7 @@ import schema from "../validation";
 const ProviderForm = props => {
   const { handleSubmit, handleCancel } = props;
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className="addForm">
       <Field label="Nombre" name="name" component={InputField} type="text" />
       <Field label="Telefono" name="phone" component={InputField} type="text" />
       <Field label="Email" name="email" component={InputField} type="text" />

@@ -33,14 +33,9 @@ const renderToolbar = ({ value }) => {
 
 const HeaderComponent = props => {
   return (
-    <div
-      style={{
-        textAlign: "left",
-        fontWeight: "bold"
-      }}
-    >
+    <h2 className="tableHeading">
       {props.title}
-    </div>
+    </h2>
   );
 };
 

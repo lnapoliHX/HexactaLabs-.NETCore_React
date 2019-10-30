@@ -10,7 +10,9 @@ const Create = ({ create: onSubmit, goBack: onCancel }) => {
   return (
     <Container fluid>
       <Row>
-        <h2>Nuevo Proveedor</h2>
+          <div className="block-header">
+            <h2>Nuevo Proveedor</h2>
+            </div>
       </Row>
       <Row>
         <Col>
