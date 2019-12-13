@@ -30,6 +30,16 @@ El sistema debe ser capaz de:
 * La web React debe conectarse con estos servicio configurando un store.
 
 # Tips
+## Entidad Store (Tienda)
+En la web se encuentra una sección llamada Tiendas en donde se presenta una pantalla con la implementación completa sobre:
+* Búsqueda de tiendas: A través de un formulario en pantalla se envía una serie de parámetros para realizar la consulta en la base de datos.
+* Listado de tiendas: una grilla presenta el detalle de cada tienda además de los botones de acción para:
+  * Ir al detalle de una tienda
+  * Navegar a la pantalla de edición
+  * Eliminar tienda
+
+Se recomienda utilizar esta entidad tanto del lado frontend como backend para realizar las actividades teniendo esta sección como referencia.
+
 ## Front end
 
 Para correr la app, solo hace falta estar situado en la carpeta `Stock.Web/client-app` y ejecutar `npm start` en la consola.
