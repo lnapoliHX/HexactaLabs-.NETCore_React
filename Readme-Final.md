@@ -1,6 +1,14 @@
 # HexactaLabs-.NETCore_React
 
-Hexacta 2019
+Hexacta 2020
+
+Bienvenido a los Hexacta Labs
+
+Agenda:
+* _Initial_: Presentación de la aplicación básica, pasos para correrla localmente y planteo de la primer actividad: Backend con .NetCore.
+* _Level 1_: Se nivelará presentando una aplicación con las actividades de la etapa inicial completas. Planteo de la segunda actividad: Frontend con ReactJS.
+* _Level 2_: Se presenta la aplicación con las actividades anteriores completas. Planteo de la tercera actividad: FullStack development.
+* __Final: Se presenta la aplicación completa. Planteo de la actividad final.__
 
 ## [Documentación](./Docs/index.md)
 
