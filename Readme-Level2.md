@@ -37,9 +37,9 @@ Luego en __Startup.cs__ hay que descomentar lo siguiente:
 ```
 
 El sistema debe ser capaz de:
-* Crear, editar y eliminar una categoría de producto a través de la sección __Categorías__ dentro del sitio.
-* Realizar búsquedas de categorías o tipos de productos.
-* La web React debe conectarse con estos servicio configurando un store.
+* Crear, editar y eliminar Productos asociados a una categoría existente a través de la sección __Productos__ dentro del sitio.
+* Realizar búsquedas de productos.
+* La web React debe conectarse con los servicios configurando un store.
 
 # Tips
 ## Entidad Store (Tienda)
