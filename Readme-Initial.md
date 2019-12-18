@@ -23,6 +23,17 @@ El curso tiene diferentes etapas y nivelaciones con este formato:
 
 # Actividad Inicial
 Para el trabajo inicial, se necesita crear un servicio backend que se conecte a la base de datos local para obtener información y brindar operaciones CRUD de la entidad __Provider__.
+
+IMPORTANTE: Al momento de crear los servicios del lado Backend es necesario descomentar lo siguiente de la clase __Startup.cs__:
+```
+//services.AddTransient<ProviderService>();
+```
+
+Además es necesario descomentar la configuración del mapeo para Provider en __ModelProfile.cs__:
+```
+//CreateMap<Provider, ProviderDTO>().ReverseMap();  
+```
+
 El sistema debe ser capaz de:
 * Crear, editar y eliminar un nuevo provider a través de la sección Proveedores dentro del sitio.
 * Realizar búsquedas de proveedores.
