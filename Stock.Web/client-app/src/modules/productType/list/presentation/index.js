@@ -10,18 +10,20 @@ const Presentation = props => {
     <Container fluid>
       <Row className="my-1">
         <Col>
-          <h1>Categorias</h1>
+            <div className="block-header">
+                <h1>Categorias</h1>
+            </div>
         </Col>
       </Row>
-      <Row className="my-1">
+      <Row className="my-1 agregarALaLista">
         <Col>
           <Button
             className="product__button"
             color="primary"
+            aria-label="Agregar"
             onClick={() => props.push(props.urls.create)}
           >
-            <FaPlus className="product__button-icon" />
-            Agregar
+            <FaPlus className="product__button-icon" />            
           </Button>
         </Col>
       </Row>

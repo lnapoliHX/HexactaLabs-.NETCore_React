@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Input, Button } from "reactstrap";
+import { Input, Button } from "reactstrap";
 import { MdSearch, MdCancel } from "react-icons/md";
 
 import PropTypes from "prop-types";
@@ -7,37 +7,39 @@ import PropTypes from "prop-types";
 const Search = props => {
   return (
     <React.Fragment>
+      <div className="busqueda">
       <h4>Búsqueda</h4>
-      <Row>
-        <Col>
-          <Input
-            name="name"
-            id="nameInput"
-            type="text"
-            onChange={props.handleFilter}
-            value={props.filters.name}
-            placeholder="Nombre"
-          />
-        </Col>
-        <Col>
-          <Input
-            name="email"
-            id="emailInput"
-            type="text"
-            onChange={props.handleFilter}
-            value={props.filters.email}
-            placeholder="Email"
-          />
-        </Col>
-        <Col>
-          <Button color="primary" onClick={props.submitFilter}>
-            <MdSearch /> Buscar
-          </Button>
-          <Button color="primary" className="ml-3" onClick={props.clearFilter}>
-            <MdCancel /> Limpiar
-          </Button>
-        </Col>
-      </Row>
+      <div className="flex-container">
+			<div>
+				<Input
+					name="name"
+					id="nameInput"
+					type="text"
+					onChange={props.handleFilter}
+					value={props.filters.name}
+					placeholder="Nombre"
+				/>
+			</div>
+			<div>
+				<Input
+					name="email"
+					id="emailInput"
+					type="text"
+					onChange={props.handleFilter}
+					value={props.filters.email}
+					placeholder="Email"
+				/>
+			</div>
+			<div  className="lastCol">
+				<Button color="primary" aria-label="Search" className="searchButton" onClick={props.submitFilter}>
+					<MdSearch />
+				</Button>
+				<Button color="primary" aria-label="Clear" className="ml-3 clearButton" onClick={props.clearFilter}>
+					<MdCancel />
+				</Button>
+			</div>
+		</div>
+      </div>
     </React.Fragment>
   );
 };

@@ -7,47 +7,41 @@ import PropTypes from "prop-types";
 const Search = props => {
   return (
     <React.Fragment>
-      <h4>Búsqueda</h4>
-      <Form onSubmit={props.submitFilter}>
-        <Row>
-          <Col>
-            <FormGroup>
-              <Input
-                name="Name"
-                id="nameInput"
-                type="text"
-                onChange={props.handleFilter}
-                value={props.filters.Name}
-                placeholder="Nombre"
-              />
-            </FormGroup>
-          </Col>
-          <Col>
-            <FormGroup>
-              <Input
-                name="Brand"
-                id="brandInput"
-                type="text"
-                onChange={props.handleFilter}
-                value={props.filters.Brand}
-                placeholder="Marca"
-              />
-            </FormGroup>
-          </Col>
-          <Col>
-            <Button color="primary">
-              <MdSearch /> Buscar
-            </Button>
-            <Button
-              color="primary"
-              className="ml-3"
-              onClick={props.clearFilter}
-            >
-              <MdCancel /> Limpiar
-            </Button>
-          </Col>
-        </Row>
-      </Form>
+        <div className="busqueda">
+        <h4>Búsqueda</h4>
+        <Form onSubmit={props.submitFilter}>
+            <div className="flex-container">            
+                <div>
+                    <Input
+                    name="Name"
+                    id="nameInput"
+                    type="text"
+                    onChange={props.handleFilter}
+                    value={props.filters.Name}
+                    placeholder="Nombre"
+                    />
+                </div>
+                <div>
+                    <Input
+                        name="Brand"
+                        id="brandInput"
+                        type="text"
+                        onChange={props.handleFilter}
+                        value={props.filters.Brand}
+                        placeholder="Tipo de producto"
+                    />
+                </div>
+                <div className="lastCol">
+                    <Button color="primary" aria-label="Search" className="searchButton">
+                        <MdSearch />
+                    </Button>
+                    <Button color="primary" aria-label="Clear" className="ml-3 clearButton" onClick={props.clearFilter}>
+                        <MdCancel />
+                    </Button>
+                </div>
+            </div>
+        </Form>
+      </div>
     </React.Fragment>
   );
 };

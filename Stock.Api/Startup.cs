@@ -34,6 +34,7 @@ namespace Stock.Api
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.Configure<DomainSettings>(Configuration.GetSection("DomainSettings"));
+            services.AddTransient<StoreService>();
             services.AddTransient<ProductService>();
             services.AddTransient<ProviderService>();
             services.AddTransient<ProductTypeService>();
@@ -43,7 +44,7 @@ namespace Stock.Api
             services.AddTransient<IRepository<Provider>, BaseRepository<Provider>>();
             services.AddTransient<IRepository<Product>, BaseRepository<Product>>();
             services.AddTransient<IRepository<ProductType>, BaseRepository<ProductType>>();
-            services.AddTransient<IRepository<Provider>, BaseRepository<Provider>>();
+            services.AddTransient<IRepository<Store>, BaseRepository<Store>>();
 
             services.AddAutoMapper();
 
