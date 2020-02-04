@@ -4,8 +4,8 @@ project.lock.json
 .DS_Store
 *.pyc
 
-# Visual Studio Code
-.vscode
+# # Visual Studio Code
+# .vscodevscode
 
 # User-specific files
 *.suo
